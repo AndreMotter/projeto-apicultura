@@ -13,7 +13,6 @@ function loadCidades() {
 }
 
 function salvar() {
-    debugger
     let obj = {
         nome: ($("[name='nome']").val() || ''),
         cidadeId: ($("[name='cidadeId']").val() || ''),

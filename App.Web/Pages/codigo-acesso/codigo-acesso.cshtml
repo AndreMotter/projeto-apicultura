@@ -1,0 +1,20 @@
+﻿@page "/codigo-acesso"
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group mb-12 centered">
+                    <h4>Código Acesso:</h4>
+                    <input type="text" id="codigo-acesso" name="codigo-acesso" class="form-control">
+                </div>
+                    <button class="btn btn-primary" onclick="gerar(this);">Gerar</button>
+     @*           <button type="button" class="btn btn-primary btn-block mb-4" onclick="gerar(this);">Gerar</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/codigo-acesso/codigo-acesso.js"></script>
+}

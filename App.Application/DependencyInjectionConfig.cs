@@ -10,6 +10,7 @@ namespace App.Application
         {
             services.AddTransient<IPessoaService, PessoaService>();
             services.AddTransient<ICidadeService, CidadeService>();
+            services.AddTransient<ICodigoAcessoService, CodigoAcessoService>();
         }
     }
 }
