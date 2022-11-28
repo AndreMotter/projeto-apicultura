@@ -21,14 +21,17 @@ namespace App.Application.Services
         public string Gerar()
         {
             Random random = new Random();
-            CodigoAcesso CodigoAcesso = new CodigoAcesso() {
+            CodigoAcesso CodigoAcesso = new CodigoAcesso() 
+            {
                 Codigo = new string(Enumerable.Repeat("123456789", 6).Select(s => s[random.Next(s.Length)]).ToArray())
             };
 
             var UltimoCodigo = _repository.Query(x => x.Id == x.Id).FirstOrDefault();
-            this.Remover(UltimoCodigo.Id);
-            Salvar(CodigoAcesso);
-
+            if(UltimoCodigo != null)
+            {
+                this.Remover(UltimoCodigo.Id);
+            }
+            this.Salvar(CodigoAcesso);
             return CodigoAcesso.Codigo;
         }
 
