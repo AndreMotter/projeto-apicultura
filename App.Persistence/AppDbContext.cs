@@ -18,7 +18,7 @@ namespace App.Persistence
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
-        public DbSet<Pessoa> Pessoa { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<CodigoAcesso> CodigoAcesso { get; set; }
     }

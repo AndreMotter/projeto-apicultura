@@ -1,6 +1,6 @@
-﻿async function PessoaListaPessoas(busca) {
+﻿async function UsuarioListaUsuarios(busca) {
     return new Promise((resolve, reject) => {
-        Get('Pessoa/ListaPessoas?nome=' + busca).then(function (response) {
+        Get('Usuario/ListaUsuarios?nome=' + busca).then(function (response) {
                 console.log(response)
                 if (response.status === 'success') {
                     resolve(response.data);
@@ -14,9 +14,9 @@
     });
 }
 
-async function PessoaBuscaPorId(id) {
+async function UsuarioBuscaPorId(id) {
     return new Promise((resolve, reject) => {
-        Get('Pessoa/BuscaPorId?id=' + id).then(function (response) {
+        Get('Usuario/BuscaPorId?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -29,9 +29,9 @@ async function PessoaBuscaPorId(id) {
     });
 }
 
-async function PessoaSalvar(obj) {
+async function UsuarioSalvar(obj) {
     return new Promise((resolve, reject) => {
-        Post('Pessoa/Salvar', obj).then(function (response) {
+        Post('Usuario/Salvar', obj).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -44,9 +44,9 @@ async function PessoaSalvar(obj) {
     });
 }
 
-async function PessoaRemover(id) {
+async function UsuarioRemover(id) {
     return new Promise((resolve, reject) => {
-        Delete('Pessoa/Remover?id=' + id).then(function (response) {
+        Delete('Usuario/Remover?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {

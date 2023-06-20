@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace App.Application.Services
 {
-    public class PessoaService : IPessoaService
+    public class UsuarioService : IUsuarioService
     {
-        private IRepositoryBase<Pessoa> _repository { get; set; }
-        public PessoaService(IRepositoryBase<Pessoa> repository)
+        private IRepositoryBase<Usuario> _repository { get; set; }
+        public UsuarioService(IRepositoryBase<Usuario> repository)
         {
             _repository = repository;
         }
-        public Pessoa BuscaPorId(Guid id)
+        public Usuario BuscaPorId(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -24,16 +24,15 @@ namespace App.Application.Services
             return obj;
         }
 
-        public List<Pessoa> listaPessoas(string busca)
+        public List<Usuario> listaUsuarios(string busca)
         {
 
             busca = busca ?? "";
             return _repository.Query(x => x.Nome.ToUpper().Contains(busca.ToUpper())/* && (pesoMaiorQue == 0 || x.Peso >= pesoMaiorQue) &&  (pesoMenorQue == 0 || x.Peso <= pesoMenorQue*/
-            ).Select(p => new Pessoa
+            ).Select(p => new Usuario
             {
                 Id = p.Id,
                 Nome = p.Nome,
-                Peso = p.Peso,
                 Cidade = new Cidade
                 {
                     Nome = p.Cidade.Nome
@@ -47,7 +46,7 @@ namespace App.Application.Services
             _repository.Delete(id);
             _repository.SaveChanges();
         }
-        public void Salvar(Pessoa obj)
+        public void Salvar(Usuario obj)
         {
             if (String.IsNullOrEmpty(obj.Nome))
             {

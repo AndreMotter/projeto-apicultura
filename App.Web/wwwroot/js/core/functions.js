@@ -9,3 +9,7 @@ function unloading(element) {
     $(element).html(tempElementHtml);
     $(element).attr('disabled', false);
 }
+
+function getUltimoAlias() {
+    return window.location.toString().split('/').pop();
+}

@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 namespace App.Domain.Interfaces.Application
 {
-    public interface IPessoaService
+    public interface IUsuarioService
     {
-        Pessoa BuscaPorId(Guid id);
-        List<Pessoa> listaPessoas(string busca);
-        void Salvar(Pessoa obj);
+        Usuario BuscaPorId(Guid id);
+        List<Usuario> listaUsuarios(string busca);
+        void Salvar(Usuario obj);
         void Remover(Guid id);
-
     }
 }

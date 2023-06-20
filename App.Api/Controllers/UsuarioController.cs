@@ -8,21 +8,21 @@ namespace App.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PessoaController : Controller
+    public class UsuarioController : Controller
     {
-        private IPessoaService _service;
+        private IUsuarioService _service;
 
-        public PessoaController(IPessoaService service)
+        public UsuarioController(IUsuarioService service)
         {
             _service = service;
         }
 
-        [HttpGet("ListaPessoas")]
-        public JsonResult ListaPessoas(string busca)
+        [HttpGet("ListaUsuarios")]
+        public JsonResult ListaUsuarios(string busca)
         {
             try
             {
-                var obj = _service.listaPessoas(busca);
+                var obj = _service.listaUsuarios(busca);
                 return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace App.Api.Controllers
             return Json(_service.BuscaPorId(id));
         }
         [HttpPost("Salvar")]
-        public JsonResult Salvar([FromBody] Pessoa obj)
+        public JsonResult Salvar([FromBody] Usuario obj)
         {
             try
             {
