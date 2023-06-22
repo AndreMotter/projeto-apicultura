@@ -1,0 +1,32 @@
+﻿@page "/historico-acessos"
+
+<div class="row">
+    <div class="col-md-10 col-sm-12">
+        <div class="form-group mb-12">
+            <h6>Filtro de Busca</h6>
+            <input type="text" name="nome" id="busca" class="form-control">
+        </div>
+    </div>
+</div>
+
+<h4>Lista de Histórios Acessos</h4>
+
+<div class="table-responsive" id="table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Data</th>
+                <th>Descricao</th>
+                <th>Tipo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/usuario/historico-acessos.js"></script>
+}
