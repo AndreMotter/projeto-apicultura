@@ -10,21 +10,26 @@ $(document).ready(function () {
 
 function load() {
     let busca = $('[name="busca"]').val();
+    $('#table').hide();
+    $('#table-loading').show();
     UsuarioListaUsuarios(busca).then(function (data) {
         $('#table tbody').html('');
         data.forEach(obj => {
-            $('#table tbody').append('' +
-                '<tr id="obj-' + obj.id + '">' +
-                '<td>' + (obj.nome || '--') + '</td>' +
-                '<td>' + (moment(obj.dataNascimento).format('DD/MM/YYYY') || '--') + '</td>' +
-                '<td>' + (obj.ativo || '--') + '</td>' +
-                '<td>' +
-                '<button class="btn-editar" onclick="window.location.href=\'/usuario/' + value.id + '\'"><i class="fas fa-edit"></i> Editar</button>' +
-                '<button class="btn-excluir" onclick="excluir(\'' + value.id + '\');"><i class="fas fa-trash"></i> Excluir</button>' +
-                '</td>' +
-                '</tr>');
+            $('#table tbody').append(
+                '<tr>' +
+                    '<td style="width: 20%;">' + (obj.nome || '--') + '</td>' +
+                    '<td style="width: 20%;">' + (moment(obj.dataNascimento).format('DD/MM/YYYY') || '--') + '</td>' +
+                    '<td style="width: 20%;">' + (obj.cidade.nome || '--') + '</td>' +
+                    '<td style="width: 20%;"> Ativo</td>' +
+                    '<td style="width: 10%;">' +
+                '<button class="btn btn-warning btn-editar" onclick="window.location.href=\'/usuario/' + obj.id + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
+                '<button style="margin-left: 5px" class="btn btn-danger btn-excluir" onclick="excluir(\'' + obj.id + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
+                    '</td>' +
+                '</tr>'
+            );
         });
-
+        $('#table').show();
+        $('#table-loading').hide();
     });
 }
 
