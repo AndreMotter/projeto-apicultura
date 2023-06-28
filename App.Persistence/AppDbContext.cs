@@ -21,5 +21,6 @@ namespace App.Persistence
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<CodigoAcesso> CodigoAcesso { get; set; }
+        public DbSet<HistoricoAcessos> HistoricoAcessos { get; set; }
     }
 }

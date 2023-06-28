@@ -1,11 +1,28 @@
 ﻿@page "/historico-acessos"
 
 <div class="row">
-    <div class="col-md-10 col-sm-12">
-        <div class="form-group mb-12">
-            <h6>Filtro de Busca</h6>
-            <input type="text" name="nome" id="busca" class="form-control">
+    <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label for="usuario">Usuário:</label>
+            <input type="text" name="usuario" id="usuario" class="form-control">
         </div>
+    </div>
+    <div class="col-md-2 col-sm-12">
+        <div class="form-group">
+            <label for="dataInicial">Data Inicial:</label>
+            <input type="date" name="dataInicial" id="dataInicial" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-12">
+        <div class="form-group">
+            <label for="dataFinal">Data Final:</label>
+            <input type="date" name="dataFinal" id="dataFinal" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-12 align-self-center mt-3">
+        <button class="btn btn-info btn-block" onclick="Imprimir();" id="imprimir">
+            <i class="bi bi-printer-fill"></i> Imprimir
+        </button>
     </div>
 </div>
 
@@ -17,16 +34,32 @@
             <tr>
                 <th>Usuário</th>
                 <th>Data</th>
-                <th>Descricao</th>
-                <th>Tipo</th>
-                <th></th>
+                <th>Descrição</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
 </div>
+<div class="text-center text-invest-1 col-12" id="table-loading">
+    <div class="spinner-border text-primary loading-table" role="status" style="width: 75px; height: 75px; margin: 50px;"></div>
+</div>
+
+
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="text-invest-1">
+                    <div class="spinner-border text-primary loading-table" role="status" style="width: 75px; height: 75px;"></div>
+                </div>
+                <p class="mt-4">Aguarde, gerando relatório...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
-    <script src="~/js/pages/usuario/historico-acessos.js"></script>
+    <script src="~/js/pages/historico-acessos/historico-acessos.js"></script>
 }

@@ -3,6 +3,7 @@ using System;
 using App.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace App.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230628030306_update8")]
+    partial class update8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,31 +59,6 @@ namespace App.Persistence.Migrations
                     b.ToTable("CodigoAcesso");
                 });
 
-            modelBuilder.Entity("App.Domain.Entities.HistoricoAcessos", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("Data")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Operacao")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("HistoricoAcessos");
-                });
-
             modelBuilder.Entity("App.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -104,17 +82,6 @@ namespace App.Persistence.Migrations
                     b.HasIndex("CidadeId");
 
                     b.ToTable("Usuario");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.HistoricoAcessos", b =>
-                {
-                    b.HasOne("App.Domain.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("App.Domain.Entities.Usuario", b =>

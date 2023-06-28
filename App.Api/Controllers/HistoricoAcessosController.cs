@@ -18,11 +18,25 @@ namespace App.Api.Controllers
         }
 
         [HttpGet("Listar")]
-        public JsonResult Listar(string busca)
+        public JsonResult Listar(string usuario, DateTime? dataInicial, DateTime? DataFinal)
         {
             try
             {
-                var obj = _service.Listar(busca);
+                var obj = _service.Listar(usuario, dataInicial, DataFinal);
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+
+        [HttpGet("Imprimir")]
+        public JsonResult Imprimir(string usuario, DateTime? dataInicial, DateTime? DataFinal)
+        {
+            try
+            {
+                var obj = _service.Imprimir(usuario, dataInicial, DataFinal);
                 return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)
