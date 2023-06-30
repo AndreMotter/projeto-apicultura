@@ -33,6 +33,8 @@ function salvar() {
         cidadeId: ($("[name='cidadeId']").val() || ''),
         dataNascimento: ($("[name='dataNascimento']").val() || ''),
         ativo: parseInt($("[name='status']").val()) == 1 ? true : false,
+        permissao: parseInt($("[name='permissao']").val()),
+        senha: $("[name='senha']").val(),
     };
 
     let id = getUltimoAlias();

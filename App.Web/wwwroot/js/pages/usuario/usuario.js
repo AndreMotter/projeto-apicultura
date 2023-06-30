@@ -55,9 +55,8 @@ function excluir(id) {
 function ativar(id) {
     UsuarioAtivar(id).then(function () {
       load();
-      notification('Usuário ativado', 'success');
     }, function (err) {
-        notification('Erro ao ativar o usuário', 'danger');
+        alert(err);
     });
 }
 

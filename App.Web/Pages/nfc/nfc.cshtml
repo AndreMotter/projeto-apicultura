@@ -1,6 +1,51 @@
-﻿namespace App.Web.Pages.nfc
-{
-    public class nfc
-    {
-    }
+﻿@page "/nfc"
+
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="form-group mb-3">
+            <h6>Usuário</h6>
+            <input type="text" name="usuario" id="usuario" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="form-group mb-3">
+            <h6>Status</h6>
+            <select name="status" id="status" class="form-control">
+                <option value="0">Todos</option>
+                <option value="1">Ativo</option>
+                <option value="2">Inativo</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-12 align-self-center mt-3">
+        <button class="btn btn-primary" onclick="window.location.href='/nfc/formulario'" style="width: 100%;">
+            <i class="bi bi-plus"></i>
+            Adicionar
+        </button>
+    </div>
+</div>
+
+<h4>Lista de Tokens NFC</h4>
+<div class="table-responsive" id="table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Token</th>
+                <th>Ativo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center text-invest-1 col-12" id="table-loading">
+    <div class="spinner-border text-primary loading-table" role="status" style="width: 75px; height: 75px; margin: 50px;"></div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/pages/nfc/nfc.js"></script>
 }

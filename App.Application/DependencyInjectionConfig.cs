@@ -13,6 +13,7 @@ namespace App.Application
             services.AddTransient<ICodigoAcessoService, CodigoAcessoService>();
             services.AddTransient<IHistoricoAcessosService, HistoricoAcessosService>();
             services.AddTransient<IIndexService, IndexService>();
+            services.AddTransient<INfcService, NfcService>();
         }
     }
 }

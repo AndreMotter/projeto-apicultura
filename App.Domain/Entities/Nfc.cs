@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Domain.Entities
 {
-    internal class Nfc
+    public class Nfc
     {
+        [Key]
+        public Guid Id { get; set; }
+        public string Token { get; set; }
+        public bool Ativo { get; set; }
+        public Guid? UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }

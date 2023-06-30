@@ -1,10 +1,5 @@
 ﻿using App.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Persistence
 {
@@ -22,5 +17,6 @@ namespace App.Persistence
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<CodigoAcesso> CodigoAcesso { get; set; }
         public DbSet<HistoricoAcessos> HistoricoAcessos { get; set; }
+        public DbSet<Nfc> Nfc { get; set; }
     }
 }

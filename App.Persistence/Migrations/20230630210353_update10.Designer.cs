@@ -3,6 +3,7 @@ using System;
 using App.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace App.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230630210353_update10")]
+    partial class update10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,28 +84,6 @@ namespace App.Persistence.Migrations
                     b.ToTable("HistoricoAcessos");
                 });
 
-            modelBuilder.Entity("App.Domain.Entities.Nfc", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("UsuarioId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Nfc");
-                });
-
             modelBuilder.Entity("App.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -141,15 +122,6 @@ namespace App.Persistence.Migrations
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.Nfc", b =>
-                {
-                    b.HasOne("App.Domain.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
                 });

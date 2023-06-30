@@ -1,12 +1,15 @@
-﻿using System;
+﻿using App.Domain.Entities;
+using App.Domain.Interfaces.Repositories;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Domain.Interfaces.Application
 {
-    internal class INfcService
+    public interface INfcService
     {
+        Nfc BuscaPorId(Guid id);
+        List<Nfc> Listar(string usuario, int status);
+        void Ativar(Guid id);
+        void Remover(Guid id);
     }
 }

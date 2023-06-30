@@ -1,4 +1,6 @@
-﻿using App.Domain.Entities;
+﻿using App.Application.Helpers;
+using App.Domain.Entities;
+using App.Domain.Enum;
 using App.Domain.Interfaces.Application;
 using App.Domain.Interfaces.Repositories;
 using SelectPdf;
@@ -57,6 +59,7 @@ namespace App.Application.Services
                 throw new Exception("Informe o nome");
             }
             obj.DataNascimento = obj.DataNascimento.ToUniversalTime();
+            obj.Senha = obj.Senha.Sha512();
             _repository.Save(obj);
             _repository.SaveChanges();
         }
