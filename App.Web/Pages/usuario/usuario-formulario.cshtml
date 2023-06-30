@@ -24,6 +24,15 @@
                     <input type="date" name="dataNascimento" class="form-control">
                 </div>
             </div>
+            <div class="col-md-3 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="1">Ativo</option>
+                        <option value="2">Inativo</option>
+                    </select>
+                </div>
+            </div>
             <div class="col-md-12 text-right">
                 <button class="btn btn-danger" onclick="window.location.href='/pessoa'">Cancelar</button>
                 <button class="btn btn-success" onclick="salvar();">Salvar</button>

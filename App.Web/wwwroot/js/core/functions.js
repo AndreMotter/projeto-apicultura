@@ -24,3 +24,20 @@ function base64ToArrayBuffer(base64) {
     }
     return bytes;
 }
+
+
+function notification(message, color) {
+    $.notifyClose();
+    $.notify({
+        message: message
+    },
+        {
+            type: color,
+            timer: 5000,
+            allow_dismiss: false,
+            placement: {
+                from: 'bottom',
+                align: 'right'
+            }
+        });
+}

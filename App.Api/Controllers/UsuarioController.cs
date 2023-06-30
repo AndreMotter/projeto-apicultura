@@ -18,11 +18,11 @@ namespace App.Api.Controllers
         }
 
         [HttpGet("ListaUsuarios")]
-        public JsonResult ListaUsuarios(string busca)
+        public JsonResult ListaUsuarios(string usuario, int status)
         {
             try
             {
-                var obj = _service.listaUsuarios(busca);
+                var obj = _service.listaUsuarios(usuario, status);
                 return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)
@@ -36,6 +36,35 @@ namespace App.Api.Controllers
         {
             return Json(_service.BuscaPorId(id));
         }
+
+        [HttpGet("Ativar")]
+        public JsonResult Ativar(Guid id)
+        {
+            try
+            {
+                _service.Ativar(id);
+                return Json(RetornoApi.Sucesso());
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+
+        [HttpGet("Imprimir")]
+        public JsonResult Imprimir(string usuario, int status)
+        {
+            try
+            {
+                var obj = _service.Imprimir(usuario, status);
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+
         [HttpPost("Salvar")]
         public JsonResult Salvar([FromBody] Usuario obj)
         {

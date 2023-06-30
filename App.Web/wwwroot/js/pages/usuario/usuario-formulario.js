@@ -13,7 +13,6 @@ function loadCidades() {
     });
 }
 function load() {
-    debugger
     let id = getUltimoAlias();
     if (id && id.toLowerCase() !== 'formulario') {
         UsuarioBuscaPorId(id).then(function (obj) {
@@ -32,7 +31,8 @@ function salvar() {
     let obj = {
         nome: ($("[name='nome']").val() || ''),
         cidadeId: ($("[name='cidadeId']").val() || ''),
-        dataNascimento: ($("[name='dataNascimento']").val() || '')
+        dataNascimento: ($("[name='dataNascimento']").val() || ''),
+        ativo: parseInt($("[name='status']").val()) == 1 ? true : false,
     };
 
     let id = getUltimoAlias();
