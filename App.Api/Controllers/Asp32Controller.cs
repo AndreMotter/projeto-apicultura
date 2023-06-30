@@ -22,8 +22,8 @@ namespace App.Api.Controllers
         {
             try
             {
-                _service.TesteApi();
-                return Json(RetornoApi.Sucesso());
+                var obj = _service.TesteApi();
+                return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)
             {
