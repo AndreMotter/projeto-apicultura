@@ -12,6 +12,7 @@ namespace App.Application
             services.AddTransient<ICidadeService, CidadeService>();
             services.AddTransient<ICodigoAcessoService, CodigoAcessoService>();
             services.AddTransient<IHistoricoAcessosService, HistoricoAcessosService>();
+            services.AddTransient<IIndexService, IndexService>();
         }
     }
 }
