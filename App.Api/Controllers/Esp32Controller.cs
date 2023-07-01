@@ -8,11 +8,11 @@ namespace App.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class Asp32Controller : Controller
+    public class Esp32Controller : Controller
     {
-        private IAsp32Service _service;
+        private IEsp32Service _service;
 
-        public Asp32Controller(IAsp32Service service)
+        public Esp32Controller(IEsp32Service service)
         {
             _service = service;
         }

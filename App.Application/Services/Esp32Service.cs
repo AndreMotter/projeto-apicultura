@@ -4,10 +4,10 @@ using App.Domain.Interfaces.Repositories;
 
 namespace App.Application.Services
 {
-    public class Asp32Service : IAsp32Service
+    public class Esp32Service : IEsp32Service
     {
         private IRepositoryBase<Usuario> _repository { get; set; }
-        public Asp32Service(IRepositoryBase<Usuario> repository)
+        public Esp32Service(IRepositoryBase<Usuario> repository)
         {
             _repository = repository;
         }

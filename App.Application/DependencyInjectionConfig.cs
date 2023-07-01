@@ -14,6 +14,7 @@ namespace App.Application
             services.AddTransient<IHistoricoAcessosService, HistoricoAcessosService>();
             services.AddTransient<IIndexService, IndexService>();
             services.AddTransient<INfcService, NfcService>();
+            services.AddTransient<IEsp32Service, Esp32Service>();
         }
     }
 }
