@@ -3,6 +3,6 @@ namespace App.Domain.Interfaces.Application
 {
     public interface IEsp32Service
     {
-        string TesteApi();
+        bool Entrar(string token);
     }
 }

@@ -17,12 +17,12 @@ namespace App.Api.Controllers
             _service = service;
         }
 
-        [HttpGet("TesteApi")]
-        public JsonResult TesteApi()
+        [HttpGet("Entrar")]
+        public JsonResult Entrar(string token)
         {
             try
             {
-                var obj = _service.TesteApi();
+                var obj = _service.Entrar(token);
                 return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)
