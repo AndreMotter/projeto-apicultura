@@ -24,7 +24,8 @@ namespace App.Application.Services
             Random random = new Random();
             CodigoAcesso CodigoAcesso = new CodigoAcesso() 
             {
-                Codigo = new string(Enumerable.Repeat("123456789", 6).Select(s => s[random.Next(s.Length)]).ToArray())
+                Codigo = new string(Enumerable.Repeat("123456789", 6).Select(s => s[random.Next(s.Length)]).ToArray()),
+                UsuarioId = new Guid("dd83e496-5803-4b37-b1d9-4cf1dd70ebcb"),
             };
 
             var UltimoCodigo = _repository.Query(x => x.Id == x.Id).FirstOrDefault();

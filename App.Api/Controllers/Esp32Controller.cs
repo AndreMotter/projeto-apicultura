@@ -30,5 +30,20 @@ namespace App.Api.Controllers
                 return Json(RetornoApi.Erro(ex.Message));
             }
         }
+
+        [HttpGet("EntrarCodigo")]
+        public JsonResult EntrarCodigo(string codigo)
+        {
+            try
+            {
+                var obj = _service.EntrarCodigo(codigo);
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+        
     }
 }
