@@ -2,6 +2,7 @@
 using App.Domain.Interfaces.Application;
 using App.Domain.Interfaces.Repositories;
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace App.Application.Services
@@ -9,9 +10,11 @@ namespace App.Application.Services
     public class Esp32Service : IEsp32Service
     {
         private IRepositoryBase<Nfc> _repository { get; set; }
-        public Esp32Service(IRepositoryBase<Nfc> repository)
+        private IRepositoryBase<HistoricoAcessos> _usuario_repository { get; set; }
+        public Esp32Service(IRepositoryBase<Nfc> repository, IRepositoryBase<HistoricoAcessos> usuario_repository)
         {
             _repository = repository;
+            _usuario_repository = usuario_repository;
         }
         public bool Entrar(string token)
         {
@@ -23,6 +26,18 @@ namespace App.Application.Services
                 nfc = query.Where(x => x.Ativo == true).FirstOrDefault();
                 if (nfc != null)
                 {
+                    CultureInfo cultura = new CultureInfo("pt-BR");
+                    DateTime data = DateTime.Now;
+                    var historico = new HistoricoAcessos()
+                    {
+                        Descricao = $@"Entrou na porta as {data.ToString("HH:mm")} na data de: {data.ToString("dd", cultura)} de {cultura.DateTimeFormat.GetMonthName(data.Month)} de {data.ToString("yyyy")}",
+                        Operacao = 1,
+                        Data = DateTime.Now.ToUniversalTime(),
+                        UsuarioId = (Guid)nfc.UsuarioId,
+                    };
+                    _usuario_repository.Save(historico);
+                    _usuario_repository.SaveChanges();
+
                     return true;
                 }
                 else
