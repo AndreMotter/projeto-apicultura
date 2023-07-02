@@ -11,5 +11,6 @@ namespace App.Domain.Interfaces.Application
     {
         List<HistoricoAcessos> Listar(string usuario, DateTime? dataInicial, DateTime? DataFinal);
         byte[] Imprimir(string usuario, DateTime? dataInicial, DateTime? DataFinal);
+        void Remover(Guid id);
     }
 }

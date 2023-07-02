@@ -68,7 +68,7 @@ namespace App.Application.Services
                 var historico = new HistoricoAcessos()
                 {
                     Descricao = $@"Entrou na porta as {data.ToString("HH:mm")} na data de {data.ToString("dd", cultura)} de {cultura.DateTimeFormat.GetMonthName(data.Month)} de {data.ToString("yyyy")}",
-                    Operacao = 1,
+                    Operacao = 2,
                     Data = DateTime.Now.ToUniversalTime(),
                     UsuarioId = (Guid)codigo_acesso.UsuarioId,
                 };

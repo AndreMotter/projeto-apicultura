@@ -58,9 +58,29 @@ namespace App.Application.Services
             {
                 throw new Exception("Informe o nome");
             }
-            obj.DataNascimento = obj.DataNascimento.ToUniversalTime();
-            obj.Senha = obj.Senha.Sha512();
-            _repository.Save(obj);
+            if (obj.CidadeId == null)
+            {
+                throw new Exception("Informe uma cidade");
+            }
+            if (obj.Permissao == 0)
+            {
+                throw new Exception("Informe um permissão");
+            }
+            if (obj.DataNascimento == null)
+            {
+                throw new Exception("Informe a data de nascimento");
+            }
+
+            obj.DataNascimento = obj.DataNascimento?.ToUniversalTime();
+            
+            if(obj.Id == Guid.Empty)
+            {
+                _repository.Save(obj);
+            }
+            else
+            {
+                _repository.Update(obj);
+            }
             _repository.SaveChanges();
         }
         public void Ativar(Guid id)
@@ -116,7 +136,7 @@ namespace App.Application.Services
                         <tbody>
                             <tr>
                                 <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.Nome}</td>
-                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.DataNascimento.ToString("dd/MM/yyyy")}</td>
+                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.DataNascimento?.ToString("dd/MM/yyyy")}</td>
                                 <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{(_usuario.Ativo ? "Ativo" : "Inativo")}</td>
                                 <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.Cidade.Nome}</td>
                             </tr>

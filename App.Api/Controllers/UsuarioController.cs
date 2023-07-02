@@ -34,7 +34,15 @@ namespace App.Api.Controllers
         [HttpGet("BuscaPorId")]
         public JsonResult BuscaPorId(Guid id)
         {
-            return Json(_service.BuscaPorId(id));
+            try
+            {
+                var obj = _service.BuscaPorId(id);
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
         }
 
         [HttpGet("Ativar")]

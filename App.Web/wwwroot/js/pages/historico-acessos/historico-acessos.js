@@ -31,6 +31,9 @@ function load() {
                 '<td>' + (obj.usuario.nome || '--') + '</td>' +
                 '<td>' + (`${data.getDate().toString().padStart(2, "0")}/${(data.getMonth() + 1).toString().padStart(2, "0")}/${data.getFullYear()}` || '--') + '</td>' +
                 '<td>' + (obj.descricao || '--') + '</td>' +
+                '<td>' + (obj.operacao == 1 ? 'Token NFC' : 'Código De Acesso' || '--') + '</td>' +
+                '<td style="width:10%">' +
+                '<button style="margin-left: 5px" class="btn btn-danger btn-excluir" onclick="excluir(\'' + obj.id + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' + '</td>' +
                 '</tr>');
         });
         $('#table').show();
@@ -51,6 +54,14 @@ function Imprimir() {
         $('#loadingModal').modal('hide');
     }, function (err) {
         $('#loadingModal').modal('hide');
+        alert(err);
+    });
+}
+
+function excluir(id) {
+    HistoricoAcessosRemover(id).then(function () {
+        load();
+    }, function (err) {
         alert(err);
     });
 }

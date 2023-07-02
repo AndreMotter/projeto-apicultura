@@ -29,7 +29,7 @@ function load() {
                     '<td style="width: 16%;">' +
                     (!obj.ativo ? '<button class="btn btn-danger" onclick="ativar(\'' + obj.id + '\')"> <i class="bi bi-hand-thumbs-down-fill"></i> Ativar</button>' :
                     '<button class="btn btn-success" onclick="ativar(\'' + obj.id + '\')"><i class="bi bi-hand-thumbs-up-fill"></i> Desativar</button>') +
-                    '<button style="margin-left: 5px" class="btn btn-warning" onclick="window.location.href=\'/usuario/' + obj.id + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
+                    '<button style="margin-left: 5px" class="btn btn-warning" onclick="window.location.href=\'/usuario/formulario/' + obj.id + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
                     '<button style="margin-left: 5px" class="btn btn-danger btn-excluir" onclick="excluir(\'' + obj.id + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
                     '</td>' +
                 '</tr>'

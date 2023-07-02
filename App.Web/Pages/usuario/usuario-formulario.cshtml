@@ -1,4 +1,5 @@
-﻿@page "/pessoa/formulario"
+﻿@page "/usuario/formulario/{id?}"
+
 <h4>Formulário de Usuários</h4>
 <div class="card">
     <div class="card-body">
@@ -44,11 +45,12 @@
                     <label>Permissão</label>
                     <select name="permissao" id="permissao" class="form-control">
                         <option value="1">Administrador</option>
+                        <option value="1">Cliente/Usuário</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-12 text-right">
-                <button class="btn btn-danger" onclick="window.location.href='/pessoa'">Cancelar</button>
+                <button class="btn btn-danger" onclick="window.location.href='/usuario'">Cancelar</button>
                 <button class="btn btn-success" onclick="salvar();">Salvar</button>
             </div>
         </div>

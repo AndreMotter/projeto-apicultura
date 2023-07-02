@@ -69,10 +69,10 @@ namespace App.Application.Services
             html.Append(@"<table style='width: 100%;font-size: 14px;font-family:Helvetica; page-break-inside: avoid;margin-top: 12px;border: solid black 1px;background-color: #E8E8E8;'>
                         <tbody>
                             <tr>
-                                <td style='text-align:left; padding: 3px; width:25%;'><strong>Descrição</strong></td>
-                                <td style='text-align:left; padding: 3px; width:25%;'><strong>Data</strong></td>
-                                <td style='text-align:left; padding: 3px; width:25%;'><strong>Operação</strong></td>
-                                <td style='text-align:left; padding: 3px; width:25%;'><strong>Usuário</strong></td>
+                                <td style='text-align:left; padding: 3px; width:40%;'><strong>Descrição</strong></td>
+                                <td style='text-align:left; padding: 3px; width:20%;'><strong>Data</strong></td>
+                                <td style='text-align:left; padding: 3px; width:20%;'><strong>Tipo de Entrada</strong></td>
+                                <td style='text-align:left; padding: 3px; width:20%;'><strong>Usuário</strong></td>
                             </tr>
                         </tbody>
                     </table>");
@@ -84,10 +84,10 @@ namespace App.Application.Services
                        <table style='width: 100%;font-size: 12px;font-family:Helvetica;border-bottom: solid black 1px;border-right: solid black 1px;border-left:solid black 1px;'>
                         <tbody>
                             <tr>
-                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{historico.Descricao}</td>
-                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{(historico.Data != null ? historico.Data.Value.ToString("dd/MM/yyyy") : "")}</td>
-                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{(historico.Operacao == 1 ? "ENTRADA" : "SAÍDA")}</td>
-                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{(historico.Usuario != null ? historico.Usuario.Nome : "")}</td>
+                                <td style='text-align:left; padding: 3px; width:40%;page-break-inside: avoid'>{historico.Descricao}</td>
+                                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Data != null ? historico.Data.Value.ToString("dd/MM/yyyy") : "")}</td>
+                                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Operacao == 1 ? "Token NFC" : "Código De Acesso")}</td>
+                                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Usuario != null ? historico.Usuario.Nome : "")}</td>
                             </tr>
                         </tbody>
                     </table>");
@@ -105,6 +105,11 @@ namespace App.Application.Services
 
                 return bytes;
             }
+        }
+        public void Remover(Guid id)
+        {
+            _repository.Delete(id);
+            _repository.SaveChanges();
         }
     }
 }

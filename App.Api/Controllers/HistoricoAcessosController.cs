@@ -44,5 +44,20 @@ namespace App.Api.Controllers
                 return Json(RetornoApi.Erro(ex.Message));
             }
         }
+
+
+        [HttpDelete("Remover")]
+        public JsonResult Remover(Guid id)
+        {
+            try
+            {
+                _service.Remover(id);
+                return Json(RetornoApi.Sucesso(true));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
     }
 }
