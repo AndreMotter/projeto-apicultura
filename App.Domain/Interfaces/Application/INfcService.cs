@@ -11,5 +11,6 @@ namespace App.Domain.Interfaces.Application
         List<Nfc> Listar(string usuario, int status);
         void Ativar(Guid id);
         void Remover(Guid id);
+        void Salvar(Nfc obj);
     }
 }

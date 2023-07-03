@@ -10,9 +10,11 @@ namespace App.Application.Services
     public class CidadeService : ICidadeService
     {
         private IRepositoryBase<Cidade> _repository { get; set; }
-        public CidadeService(IRepositoryBase<Cidade> repository)
+        private IRepositoryBase<Usuario> _usuario_repository { get; set; }
+        public CidadeService(IRepositoryBase<Cidade> repository, IRepositoryBase<Usuario> usuario_repository)
         {
             _repository = repository;
+            _usuario_repository = usuario_repository;
         }
         public Cidade BuscaPorCep(string cep)
         {
@@ -44,6 +46,11 @@ namespace App.Application.Services
 
         public void Remover(Guid id)
         {
+            var usuarios = _usuario_repository.Query(x => x.CidadeId == id).ToList();
+            if (usuarios.Count > 0)
+            {
+                throw new Exception("Existem usuário com essa cidade, ela não pode ser excluída");
+            }
             _repository.Delete(id);
             _repository.SaveChanges();
         }

@@ -66,5 +66,23 @@ namespace App.Application.Services
             _repository.Delete(id);
             _repository.SaveChanges();
         }
+
+        public void Salvar(Nfc obj)
+        {
+            if (String.IsNullOrEmpty(obj.Token))
+            {
+                throw new Exception("Informe o um token");
+            }
+
+            if (obj.Id == Guid.Empty)
+            {
+                _repository.Save(obj);
+            }
+            else
+            {
+                _repository.Update(obj);
+            }
+            _repository.SaveChanges();
+        }
     }
 }

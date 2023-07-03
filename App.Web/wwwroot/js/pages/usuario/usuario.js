@@ -22,19 +22,23 @@ function load() {
         data.forEach(obj => {
             $('#table tbody').append(
                 '<tr>' +
-                    '<td style="width: 20%;">' + (obj.nome || '--') + '</td>' +
-                    '<td style="width: 20%;">' + (moment(obj.dataNascimento).format('DD/MM/YYYY') || '--') + '</td>' +
-                    '<td style="width: 20%;">' + (obj.cidade.nome || '--') + '</td>' +
-                    '<td style="width: 15%;">' + ((!obj.ativo ? 'Inativo' : 'Ativo') || '--') + '</td>' +
-                    '<td style="width: 16%;">' +
-                    (!obj.ativo ? '<button class="btn btn-danger" onclick="ativar(\'' + obj.id + '\')"> <i class="bi bi-hand-thumbs-down-fill"></i> Ativar</button>' :
-                    '<button class="btn btn-success" onclick="ativar(\'' + obj.id + '\')"><i class="bi bi-hand-thumbs-up-fill"></i> Desativar</button>') +
-                    '<button style="margin-left: 5px" class="btn btn-warning" onclick="window.location.href=\'/usuario/formulario/' + obj.id + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
-                    '<button style="margin-left: 5px" class="btn btn-danger btn-excluir" onclick="excluir(\'' + obj.id + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
-                    '</td>' +
+                '<td>' + (obj.nome || '--') + '</td>' +
+                '<td>' + (moment(obj.dataNascimento).format('DD/MM/YYYY') || '--') + '</td>' +
+                '<td>' + (obj.cidade.nome || '--') + '</td>' +
+                '<td>' + ((!obj.ativo ? 'Inativo' : 'Ativo') || '--') + '</td>' +
+                '<td class="text-right">' +
+                '<div class="btn-group" role="group">' +
+                (!obj.ativo ? '<button class="btn btn-danger btn-sm mr-2" onclick="ativar(\'' + obj.id + '\')"> <i class="bi bi-hand-thumbs-down-fill"></i> Ativar</button>' :
+                    '<button class="btn btn-success btn-sm mr-2" onclick="ativar(\'' + obj.id + '\')"><i class="bi bi-hand-thumbs-up-fill"></i> Desativar</button>') +
+                '<button class="btn btn-warning btn-sm mr-2" onclick="window.location.href=\'/usuario/formulario/' + obj.id + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
+                '<button class="btn btn-danger btn-sm btn-excluir" onclick="excluir(\'' + obj.id + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
+                '</div>' +
+                '</td>' +
                 '</tr>'
             );
         });
+
+
         $('#table').show();
         $('#table-loading').hide();
     }, function (err) {

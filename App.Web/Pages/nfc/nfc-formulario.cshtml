@@ -1,4 +1,4 @@
-﻿@page "/nfc/formulario"
+﻿@page "/nfc/formulario/{id?}"
 
 <h4>Formulário de NFC</h4>
 <div class="card">
@@ -7,13 +7,13 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group mb-12">
                     <label>Token NFC</label>
-                    <input type="text" name="nfc" class="form-control">
+                    <input type="text" name="token" id="token" class="form-control">
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group mb-12">
                     <label>Usuário</label>
-                    <select class="js-example-basic-single" style="width:100%" name="cidadeId" id="cidadeId">
+                    <select class="js-example-basic-single" style="width:100%" name="usuarioId" id="usuarioId">
                     </select>
                 </div>
             </div>
