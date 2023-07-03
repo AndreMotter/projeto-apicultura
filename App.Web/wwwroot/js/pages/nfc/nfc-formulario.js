@@ -14,7 +14,6 @@ function loadUsuarios() {
 }
 
 function load() {
-    debugger
     let id = getUltimoAlias();
     if (id && id.toLowerCase() !== 'formulario') {
         NfcBuscaPorId(id).then(function (obj) {
@@ -30,7 +29,6 @@ function load() {
 
 
 function salvar() {
-    debugger
     let obj = {
         token: ($("[name='token']").val() || ''),
         usuarioId: ($("[name='usuarioId']").val() || ''),    

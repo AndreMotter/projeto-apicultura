@@ -37,7 +37,6 @@ function load() {
 }
 
 function excluir(id) {
-    debugger
     CidadeRemover(id).then(function () {
         load();
     }, function (err) {
