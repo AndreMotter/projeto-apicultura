@@ -9,6 +9,7 @@
 });
 
 function Acessar() {
+    $("#erro").hide();
     let obj = {
         usuario: $('#login').val(),
         senha: $('#senha').val()
@@ -16,6 +17,7 @@ function Acessar() {
     IndexLogar(obj).then(function () {
         window.location.href = '/home';
     }, function (err) {
-        alert(err);
+        $("#erro").text(err);
+        $("#erro").show();
     });
 }
