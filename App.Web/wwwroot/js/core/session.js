@@ -12,13 +12,6 @@ function VerificaToken() {
             } else {
                 SetCookie('tipo-usuario', usuario.permissao);
                 SetCookie('id-usuario', usuario.id);
-                if (usuario.permissao == 1) {
-                    $('#menus-cliente').hide();
-                    $('#menus-adm').show();
-                } else {
-                    $('#menus-adm').hide();
-                    $('#menus-show').show();
-                }
             }
         }, function () {
             DeleteAllCookies();

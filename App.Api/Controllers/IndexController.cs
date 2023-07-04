@@ -25,16 +25,14 @@ namespace App.Api.Controllers
 
         [HttpPost("Logar")]
         [AllowAnonymous]
-        public async Task<JsonResult> Logar([FromBody] LoginDTO login)
+        public JsonResult Logar([FromBody] LoginDTO login)
         {
             try
             {
-                var obj = _service.Logar(login);
-                var token = await _jwtOptions.Token(obj);
-                return await Task.Run(() =>
-                {
-                    return Json(new { status = "success", data = obj, token = token });
-                });
+                var auth = _service.Logar(login);
+                var token = _jwtOptions.Token(auth).Result;
+                var obj = _service.Autenticado(auth);
+                return Json(RetornoApi.Sucesso(obj, token));
             }
             catch (Exception e)
             {
