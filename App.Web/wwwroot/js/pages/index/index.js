@@ -13,13 +13,8 @@ function Acessar() {
         usuario: $('#login').val(),
         senha: $('#senha').val()
     };
-    IndexLogar(obj).then(function (usuario) {
+    IndexLogar(obj).then(function () {
         window.location.href = '/home';
-        if (usuario.permissao == 1) {
-            $('#menus-adm').show();
-        } else {
-            $('#menus-cliente').show();
-        }
     }, function (err) {
         alert(err);
     });

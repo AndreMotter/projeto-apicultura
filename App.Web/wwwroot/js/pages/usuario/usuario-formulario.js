@@ -20,6 +20,7 @@ function load() {
             $("[name='cidadeId']").val(obj.cidadeId.toString());
             $("[name='cidadeId']").select2();
             $("[name='senha']").val(obj.senha);
+            $("[name='login']").val(obj.login);
             $("[name='status']").val(obj.ativo ? "1" : "2");
             $("[name='permissao']").val(obj.permissao.toString());
         }, function (err) {
@@ -36,6 +37,7 @@ function salvar() {
         ativo: parseInt($("[name='status']").val()) == 1 ? true : false,
         permissao: parseInt($("[name='permissao']").val()),
         senha: $("[name='senha']").val(),
+        login: $("[name='login']").val(),
     };
     let id = getUltimoAlias();
     if (id && id.toLowerCase() !== 'formulario') {
