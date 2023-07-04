@@ -26,11 +26,11 @@ namespace App.Application.Services
             var listaQuery = _repository.Query(x => EF.Functions.Like(x.Usuario.Nome.ToUpper(), $"%{usuario.ToUpper()}%"));
             if (dataInicial != null)
             {
-                listaQuery = listaQuery.Where(x => x.Data >= dataInicial);
+                listaQuery = listaQuery.Where(x => x.Data >= dataInicial.Value.ToUniversalTime());
             }
             if (DataFinal != null)
             {
-                listaQuery = listaQuery.Where(x => x.Data <= DataFinal);
+                listaQuery = listaQuery.Where(x => x.Data <= DataFinal.Value.ToUniversalTime());
             }
             var lista = listaQuery.Select(p => new HistoricoAcessos
             {
@@ -43,7 +43,7 @@ namespace App.Application.Services
                 Data = p.Data,
                 Operacao = p.Operacao
             })
-            .OrderBy(x => x.Descricao)
+            .OrderByDescending(x => x.Data)
             .ToList();
             return lista;
         }

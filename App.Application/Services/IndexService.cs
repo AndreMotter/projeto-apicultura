@@ -35,7 +35,7 @@ namespace App.Application.Services
                 throw new Exception("Informe a senha");
             }
 
-            var obj = _repository.Query(x => x.Senha.Trim().ToUpper() == login.Senha.Trim().ToUpper() && x.Login.Trim().ToUpper() == login.Usuario.Trim().ToUpper()).FirstOrDefault();
+            var obj = _repository.Query(x => x.Senha.Trim() == login.Senha.Trim() && x.Login.Trim() == login.Usuario.Trim()).FirstOrDefault();
             if (obj == null)
             {
                 throw new Exception("Usuário ou senha incorretos");
