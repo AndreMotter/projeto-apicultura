@@ -5,14 +5,8 @@ using App.Domain.Enum;
 using App.Domain.Interfaces.Application;
 using App.Domain.Interfaces.Repositories;
 using Autenticador.Domain.DTOs.Auth;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
-using SelectPdf;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace App.Application.Services
 {
