@@ -33,4 +33,10 @@ function DeleteCacheCookies() {
     DeleteCookie('nome-usuario');
     DeleteCookie('numero-permissoes');
     DeleteCookie('org-codigo');
+    DeleteCookie('tipo-regra-quantidadedeCaracteres');
+    DeleteCookie('tipo-regra-letraMaiusculas');
+    DeleteCookie('tipo-regra-letraMinuscula');
+    DeleteCookie('tipo-regra-caractereEspecial');
+    DeleteCookie('tipo-regra-conterNumeros');
+    DeleteCookie('UnidadeId');
 }

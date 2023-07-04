@@ -1,6 +1,7 @@
 ﻿using App.Domain.Entities;
 using App.Domain.Interfaces.Application;
 using App.Domain.Interfaces.Repositories;
+using Autenticador.Domain.DTOs.Auth;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,13 +20,13 @@ namespace App.Application.Services
             _repository = repository;
         }
 
-        public string Gerar()
+        public string Gerar(AuthData auth)
         {
             Random random = new Random();
             CodigoAcesso CodigoAcesso = new CodigoAcesso() 
             {
                 Codigo = new string(Enumerable.Repeat("123456789", 6).Select(s => s[random.Next(s.Length)]).ToArray()),
-                UsuarioId = new Guid("dd83e496-5803-4b37-b1d9-4cf1dd70ebcb"),
+                UsuarioId = auth.IdUsuario,
             };
 
             var UltimoCodigo = _repository.Query(x => x.Id == x.Id).FirstOrDefault();

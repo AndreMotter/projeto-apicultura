@@ -8,20 +8,14 @@
 
 });
 
-function Acessar(ele) {
-    //$('#display-erro').hide();
-    //$('#btn-acessar').attr('disabled', true);
+function Acessar() {
     let obj = {
         usuario: $('#login').val(),
         senha: $('#senha').val()
     };
     IndexLogar(obj).then(function () {
-/*        unloading(ele);*/
         window.location.href = '/home';
     }, function (err) {
-        //unloading(ele);
-        //$('#alert-erro').html(err);
-        //$('#display-erro').show();
-        //$('#btn-acessar').attr('disabled', false);
+        alert(err);
     });
 }

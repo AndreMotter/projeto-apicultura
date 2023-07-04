@@ -1,6 +1,7 @@
 ﻿using App.Domain.Entities;
 using App.Domain.Interfaces.Application;
 using App.Domain.Interfaces.Repositories;
+using Autenticador.Domain.DTOs.Auth;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Globalization;
@@ -70,7 +71,7 @@ namespace App.Application.Services
                     Descricao = $@"Entrou na porta as {data.ToString("HH:mm")} na data de {data.ToString("dd", cultura)} de {cultura.DateTimeFormat.GetMonthName(data.Month)} de {data.ToString("yyyy")}",
                     Operacao = 2,
                     Data = DateTime.Now.ToUniversalTime(),
-                    UsuarioId = (Guid)codigo_acesso.UsuarioId,
+                    UsuarioId = codigo_acesso.UsuarioId,
                 };
                 _usuario_repository.Save(historico);
                 _usuario_repository.SaveChanges();

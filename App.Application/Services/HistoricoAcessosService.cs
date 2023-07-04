@@ -43,7 +43,7 @@ namespace App.Application.Services
                 Data = p.Data,
                 Operacao = p.Operacao
             })
-            .OrderByDescending(x => x.Descricao)
+            .OrderBy(x => x.Descricao)
             .ToList();
             return lista;
         }

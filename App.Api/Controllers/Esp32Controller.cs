@@ -1,7 +1,9 @@
 ﻿using App.Domain.DTO;
 using App.Domain.Entities;
 using App.Domain.Interfaces.Application;
+using Autenticador.API.Auth;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 
 namespace App.Api.Controllers

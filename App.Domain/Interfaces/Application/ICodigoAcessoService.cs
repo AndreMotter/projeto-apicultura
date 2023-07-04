@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autenticador.Domain.DTOs.Auth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace App.Domain.Interfaces.Application
 {
     public interface ICodigoAcessoService
     {
-        string Gerar();
+        string Gerar(AuthData Auth);
     }
 }

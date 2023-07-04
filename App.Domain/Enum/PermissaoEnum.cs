@@ -8,6 +8,7 @@ namespace App.Domain.Enum
 {
     public enum PermissaoEnum
     {
-        Administrador = 1
+        Administrador = 1,
+        Cliente = 1
     }
 }
