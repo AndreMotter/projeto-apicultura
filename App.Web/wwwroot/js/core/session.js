@@ -6,6 +6,8 @@
 function VerificaToken() {
     if (window.location.pathname.toLocaleLowerCase() !== '/') {
         $('#loading').show();
+        $('#label-menu-cadastros').hide();
+        $('#label-menu-lancamentos').hide();
         IndexAutenticado().then(function (usuario) {
             if (!usuario) {
                 DeleteAllCookies();
@@ -15,14 +17,17 @@ function VerificaToken() {
                 SetCookie('id-usuario', usuario.id);
                 $("#usuario-logado").text(usuario.login);
                 if (usuario.permissao == 1) {
-                    $('#menus-adm').show();
-                } else {
-                    $('#menus-cliente').show();
-                }
+                    $('#menus-adm-cadastros').show();
+                    $('#menus-adm-lancamentos').show();
+                } 
             }
             $('#loading').hide();
+            $('#label-menu-cadastros').show();
+            $('#label-menu-lancamentos').show();
         }, function () {
             $('#loading').hide();
+            $('#label-menu-cadastros').show();
+            $('#label-menu-lancamentos').show();
             DeleteAllCookies();
             window.location.href = '/';
         });
