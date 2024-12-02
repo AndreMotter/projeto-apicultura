@@ -18,7 +18,7 @@ namespace App.Application.Services
         {
             if (id == Guid.Empty)
             {
-                throw new Exception("Informe o id");
+                throw new Exception("Informe o código!");
             }
             var obj = _repository.Query(x => x.rac_codigo == id).FirstOrDefault();
             return obj;
@@ -43,7 +43,7 @@ namespace App.Application.Services
         {
             if (String.IsNullOrEmpty(obj.rac_descricao))
             {
-                throw new Exception("Informe a descrição");
+                throw new Exception("Informe a descrição!");
             }
 
             if (obj.rac_codigo == Guid.Empty)

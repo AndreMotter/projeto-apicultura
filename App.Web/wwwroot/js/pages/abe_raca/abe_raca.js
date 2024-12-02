@@ -10,7 +10,6 @@ $(document).ready(function () {
 
 function load() {
     let abe_raca = $('#descricao').val() || '';
-
     $('#table').hide();
     $('#table-loading').show();
     Abe_racaListaAbe_raca(abe_raca).then(function (data) {
@@ -31,8 +30,6 @@ function load() {
                 '</tr>'
             );
         });
-
-
         $('#table').show();
         $('#table-loading').hide();
     }, function (err) {
