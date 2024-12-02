@@ -26,7 +26,7 @@ function VerificaToken() {
             $('#label-menu-lancamentos').show();
         }, function () {
             $('#loading').hide();
-            $('#label-menu-cadastros').show();
+                        $('#label-menu-cadastros').show();
             $('#label-menu-lancamentos').show();
             DeleteAllCookies();
             window.location.href = '/';
