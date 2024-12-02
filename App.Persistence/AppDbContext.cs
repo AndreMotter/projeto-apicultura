@@ -17,6 +17,7 @@ namespace App.Persistence
         //HoneyTrack
         public DbSet<abe_raca> abe_raca { get; set; }
         public DbSet<abe_colmeia> abe_colmeia { get; set; }
+        public DbSet<abe_apicultor> abe_apicultor { get; set; }
 
 
         public DbSet<Usuario> Usuario { get; set; }
