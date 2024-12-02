@@ -15,7 +15,10 @@ namespace App.Application
             services.AddTransient<IIndexService, IndexService>();
             services.AddTransient<INfcService, NfcService>();
             services.AddTransient<IEsp32Service, Esp32Service>();
+
+            //HoneyTrack
             services.AddTransient<IAbe_racaService, Abe_racaService>();
+            services.AddTransient<IAbe_colmeiaService, Abe_colmeiaService>();
         }
     }
 }

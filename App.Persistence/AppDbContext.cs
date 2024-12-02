@@ -13,8 +13,13 @@ namespace App.Persistence
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
-        public DbSet<Usuario> Usuario { get; set; }
+
+        //HoneyTrack
         public DbSet<abe_raca> abe_raca { get; set; }
+        public DbSet<abe_colmeia> abe_colmeia { get; set; }
+
+
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Cidade> Cidade { get; set; }
         public DbSet<CodigoAcesso> CodigoAcesso { get; set; }
         public DbSet<HistoricoAcessos> HistoricoAcessos { get; set; }
