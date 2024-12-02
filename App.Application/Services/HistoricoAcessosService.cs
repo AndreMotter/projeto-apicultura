@@ -61,7 +61,7 @@ namespace App.Application.Services
                     </td>
                     <td style='text-align: right; width: 50%;'>
                         <p>Data de Emissão: <strong>{DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy")}</strong></p>
-                        <p><strong>Sistema AcessoCerto</strong></p>
+                        <p><strong>Sistema HoneyTrack</strong></p>
                     </td>
                 </tr>
             </table>");

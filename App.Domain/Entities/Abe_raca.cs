@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Domain.Entities
 {
-    internal class Abe_raca
+    public class abe_raca
     {
+        [Key]
+        public Guid rac_codigo { get; set; }
+        public string rac_descricao { get; set; }
+        public string rac_origem { get; set; }
+        public bool rac_ativo { get; set; }
     }
 }

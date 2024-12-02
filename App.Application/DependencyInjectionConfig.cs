@@ -15,6 +15,7 @@ namespace App.Application
             services.AddTransient<IIndexService, IndexService>();
             services.AddTransient<INfcService, NfcService>();
             services.AddTransient<IEsp32Service, Esp32Service>();
+            services.AddTransient<IAbe_racaService, Abe_racaService>();
         }
     }
 }

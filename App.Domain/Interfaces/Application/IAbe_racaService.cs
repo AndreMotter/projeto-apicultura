@@ -1,12 +1,14 @@
-﻿using System;
+﻿using App.Domain.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Domain.Interfaces.Application
 {
-    internal interface IAbe_racaService
+    public interface IAbe_racaService
     {
+        abe_raca BuscaPorId(Guid id);
+        List<abe_raca> ListaAbe_raca(string abe_raca);
+        void Salvar(abe_raca obj);
+        void Remover(Guid id);
     }
 }
