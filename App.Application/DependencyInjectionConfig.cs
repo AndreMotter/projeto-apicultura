@@ -9,7 +9,6 @@ namespace App.Application
         public static void Inject(IServiceCollection services)
         {
             services.AddTransient<IUsuarioService, UsuarioService>();
-            services.AddTransient<ICodigoAcessoService, CodigoAcessoService>();
             services.AddTransient<IHistoricoAcessosService, HistoricoAcessosService>();
             services.AddTransient<IIndexService, IndexService>();
             services.AddTransient<INfcService, NfcService>();

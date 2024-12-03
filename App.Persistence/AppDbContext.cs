@@ -24,7 +24,6 @@ namespace App.Persistence
         public DbSet<abe_tipodeitura> abe_tipodeitura { get; set; }
         public DbSet<abe_unidademedida> abe_unidademedida { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<CodigoAcesso> CodigoAcesso { get; set; }
         public DbSet<HistoricoAcessos> HistoricoAcessos { get; set; }
         public DbSet<Nfc> Nfc { get; set; }
     }
