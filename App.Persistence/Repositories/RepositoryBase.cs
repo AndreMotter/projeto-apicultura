@@ -25,14 +25,7 @@ namespace App.Persistence.Repositories
 
         public void Save(TEntity obj)
         {
-            if ((Guid)obj.GetType().GetProperty("Id").GetValue(obj, null) != Guid.Empty)
-            {
-                _dbSetEntity.Update(obj);
-            }
-            else
-            {
-                _dbSetEntity.Add(obj);
-            }
+            _dbSetEntity.Add(obj);
         }
 
         public void Update(TEntity obj)

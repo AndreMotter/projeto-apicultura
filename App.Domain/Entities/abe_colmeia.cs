@@ -11,6 +11,8 @@ namespace App.Domain.Entities
         public DateTime col_datainstalacao { get; set; }
         public string col_status { get; set; }
         public int col_numero { get; set; }
+        public decimal col_latitude { get; set; }
+        public decimal col_longitude { get; set; }
         public Guid rac_codigo { get; set; }
         public abe_raca abe_raca { get; set; }
     }

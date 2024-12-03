@@ -39,10 +39,6 @@ namespace App.Application.Services
             {
                 Id = p.Id,
                 Nome = p.Nome,
-                Cidade = new Cidade
-                {
-                    Nome = p.Cidade.Nome
-                },
                 Ativo = p.Ativo,
                 DataNascimento = p.DataNascimento
             }).OrderByDescending(x => x.Nome).ToList();
@@ -57,10 +53,6 @@ namespace App.Application.Services
             if (String.IsNullOrEmpty(obj.Nome))
             {
                 throw new Exception("Informe o nome");
-            }
-            if (obj.CidadeId == null)
-            {
-                throw new Exception("Informe uma cidade");
             }
             if (obj.Permissao == 0)
             {
@@ -138,7 +130,6 @@ namespace App.Application.Services
                                 <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.Nome}</td>
                                 <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.DataNascimento?.ToString("dd/MM/yyyy")}</td>
                                 <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{(_usuario.Ativo ? "Ativo" : "Inativo")}</td>
-                                <td style='text-align:left; padding: 3px; width:25%;page-break-inside: avoid'>{_usuario.Cidade.Nome}</td>
                             </tr>
                         </tbody>
                     </table>");

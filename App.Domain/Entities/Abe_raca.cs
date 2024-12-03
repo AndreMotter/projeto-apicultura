@@ -9,6 +9,6 @@ namespace App.Domain.Entities
         public Guid rac_codigo { get; set; }
         public string rac_descricao { get; set; }
         public string rac_origem { get; set; }
-        public bool rac_ativo { get; set; }
+        public bool rac_status { get; set; }
     }
 }

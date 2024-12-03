@@ -10,6 +10,7 @@ $(document).ready(function () {
 
 function load() {
     let abe_raca = $('#descricao').val() || '';
+    let rac_ativo = parseInt($('#rac_ativo').val()) || 0;
     $('#table').hide();
     $('#table-loading').show();
     Abe_racaListaAbe_raca(abe_raca).then(function (data) {
@@ -51,22 +52,6 @@ function ativar(id) {
     UsuarioAtivar(id).then(function () {
       load();
     }, function (err) {
-        alert(err);
-    });
-}
-
-function Imprimir() {
-    $('#loadingModal').modal();
-    let usuario = $('#usuario').val();
-    let status = parseInt($('#status').val()) || 0;
-    UsuarioImprimir(usuario, status).then(function (data) {
-        let arrrayBuffer = base64ToArrayBuffer(data);
-        let blob = new Blob([arrrayBuffer], { type: "application/pdf" });
-        let link = window.URL.createObjectURL(blob);
-        window.open(link, '_blank');
-        $('#loadingModal').modal('hide');
-    }, function (err) {
-        $('#loadingModal').modal('hide');
         alert(err);
     });
 }

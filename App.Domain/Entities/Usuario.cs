@@ -11,8 +11,6 @@ namespace App.Domain.Entities
         public string Nome { get; set; }
         public DateTime? DataNascimento { get; set; }
         public bool Ativo { get; set; }
-        public Guid? CidadeId { get; set; }
-        public Cidade Cidade { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
         public int Permissao { get; set; }
