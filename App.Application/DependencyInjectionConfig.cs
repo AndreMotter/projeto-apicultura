@@ -9,12 +9,10 @@ namespace App.Application
         public static void Inject(IServiceCollection services)
         {
             services.AddTransient<IUsuarioService, UsuarioService>();
-            services.AddTransient<IHistoricoAcessosService, HistoricoAcessosService>();
-            services.AddTransient<IIndexService, IndexService>();
-            services.AddTransient<INfcService, NfcService>();
-            services.AddTransient<IEsp32Service, Esp32Service>();
+            services.AddTransient<IHistoricoAcessosService, Abe_logService>();
 
             //HoneyTrack
+            services.AddTransient<IIndexService, IndexService>();
             services.AddTransient<IAbe_racaService, Abe_racaService>();
             services.AddTransient<IAbe_colmeiaService, Abe_colmeiaService>();
             services.AddTransient<IAbe_apicultorService, Abe_apicultorService>();

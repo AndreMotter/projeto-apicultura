@@ -9,7 +9,7 @@ namespace App.Domain.Interfaces.Application
 {
     public interface IHistoricoAcessosService
     {
-        List<HistoricoAcessos> Listar(string usuario, DateTime? dataInicial, DateTime? DataFinal);
+        List<abe_log> Listar(string usuario, DateTime? dataInicial, DateTime? DataFinal);
         byte[] Imprimir(string usuario, DateTime? dataInicial, DateTime? DataFinal);
         void Remover(Guid id);
     }

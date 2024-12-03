@@ -12,38 +12,34 @@ using System.Text;
 
 namespace App.Application.Services
 {
-    public class HistoricoAcessosService : IHistoricoAcessosService
+    public class Abe_logService : IHistoricoAcessosService
     {
-        private IRepositoryBase<HistoricoAcessos> _repository { get; set; }
-        public HistoricoAcessosService(IRepositoryBase<HistoricoAcessos> repository)
+        private IRepositoryBase<abe_log> _repository { get; set; }
+        public Abe_logService(IRepositoryBase<abe_log> repository)
         {
             _repository = repository;
         }
 
-        public List<HistoricoAcessos> Listar(string usuario, DateTime? dataInicial, DateTime? DataFinal)
+        public List<abe_log> Listar(string usuario, DateTime? dataInicial, DateTime? DataFinal)
         {
             usuario = usuario ?? "";
-            var listaQuery = _repository.Query(x => EF.Functions.Like(x.Usuario.Nome.ToUpper(), $"%{usuario.ToUpper()}%"));
+            var listaQuery = _repository.Query(x => EF.Functions.Like(x.usuario.Nome.ToUpper(), $"%{usuario.ToUpper()}%"));
             if (dataInicial != null)
             {
-                listaQuery = listaQuery.Where(x => x.Data >= dataInicial.Value.ToUniversalTime());
+                listaQuery = listaQuery.Where(x => x.log_data >= dataInicial.Value.ToUniversalTime());
             }
             if (DataFinal != null)
             {
-                listaQuery = listaQuery.Where(x => x.Data <= DataFinal.Value.ToUniversalTime());
+                listaQuery = listaQuery.Where(x => x.log_data <= DataFinal.Value.ToUniversalTime());
             }
-            var lista = listaQuery.Select(p => new HistoricoAcessos
+            var lista = listaQuery.Select(p => new abe_log
             {
-                Id = p.Id,
-                Descricao = p.Descricao,
-                Usuario = new Usuario
-                {
-                    Nome = p.Usuario.Nome
-                },
-                Data = p.Data,
-                Operacao = p.Operacao
+                log_codigo = p.log_codigo,
+                log_tabela = p.log_tabela,
+                log_data = p.log_data,
+                log_operacao = p.log_operacao
             })
-            .OrderByDescending(x => x.Data)
+            .OrderByDescending(x => x.log_data)
             .ToList();
             return lista;
         }
@@ -80,17 +76,17 @@ namespace App.Application.Services
             foreach (var historico in lista)
             {
 
-                html.Append($@"
-                       <table style='width: 100%;font-size: 12px;font-family:Helvetica;border-bottom: solid black 1px;border-right: solid black 1px;border-left:solid black 1px;'>
-                        <tbody>
-                            <tr>
-                                <td style='text-align:left; padding: 3px; width:40%;page-break-inside: avoid'>{historico.Descricao}</td>
-                                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Data != null ? historico.Data.Value.ToString("dd/MM/yyyy") : "")}</td>
-                                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Operacao == 1 ? "Token NFC" : "Código De Acesso")}</td>
-                                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Usuario != null ? historico.Usuario.Nome : "")}</td>
-                            </tr>
-                        </tbody>
-                    </table>");
+                //html.Append($@"
+                //       <table style='width: 100%;font-size: 12px;font-family:Helvetica;border-bottom: solid black 1px;border-right: solid black 1px;border-left:solid black 1px;'>
+                //        <tbody>
+                //            <tr>
+                //                <td style='text-align:left; padding: 3px; width:40%;page-break-inside: avoid'>{historico.Descricao}</td>
+                //                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Data != null ? historico.Data.Value.ToString("dd/MM/yyyy") : "")}</td>
+                //                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Operacao == 1 ? "Token NFC" : "Código De Acesso")}</td>
+                //                <td style='text-align:left; padding: 3px; width:20%;page-break-inside: avoid'>{(historico.Usuario != null ? historico.Usuario.Nome : "")}</td>
+                //            </tr>
+                //        </tbody>
+                //    </table>");
             }
 
             HtmlToPdf converter = new HtmlToPdf();

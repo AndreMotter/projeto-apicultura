@@ -47,7 +47,7 @@ namespace App.Api.Controllers
         }
 
         [HttpPost("Salvar")]
-        public JsonResult Salvar([FromBody] Abe_apicultor obj)
+        public JsonResult Salvar([FromBody] abe_apicultor obj)
         {
             try
             {

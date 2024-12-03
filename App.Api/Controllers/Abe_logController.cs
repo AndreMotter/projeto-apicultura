@@ -8,11 +8,11 @@ namespace App.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HistoricoAcessosController : Controller
+    public class Abe_logController : Controller
     {
         private IHistoricoAcessosService _service;
 
-        public HistoricoAcessosController(IHistoricoAcessosService service)
+        public Abe_logController(IHistoricoAcessosService service)
         {
             _service = service;
         }
