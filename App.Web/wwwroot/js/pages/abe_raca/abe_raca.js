@@ -22,10 +22,10 @@ function load() {
                 '<td>' + (obj.rac_origem || '--') + '</td>' +
                 '<td class="text-right">' +
                 '<div class="btn-group" role="group">' +
-                (!obj.ativo ? '<button class="btn btn-danger btn-sm mr-2" onclick="ativar(\'' + obj.id + '\')"> <i class="bi bi-hand-thumbs-down-fill"></i> Ativar</button>' :
-                    '<button class="btn btn-success btn-sm mr-2" onclick="ativar(\'' + obj.id + '\')"><i class="bi bi-hand-thumbs-up-fill"></i> Desativar</button>') +
-                '<button class="btn btn-warning btn-sm mr-2" onclick="window.location.href=\'/usuario/formulario/' + obj.id + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
-                '<button class="btn btn-danger btn-sm btn-excluir" onclick="excluir(\'' + obj.id + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
+                (!obj.rac_status ? '<button class="btn btn-danger btn-sm mr-2" onclick="ativar(\'' + obj.rac_codigo + '\')"> <i class="bi bi-hand-thumbs-down-fill"></i> Ativar</button>' :
+                    '<button class="btn btn-success btn-sm mr-2" onclick="ativar(\'' + obj.rac_codigo + '\')"><i class="bi bi-hand-thumbs-up-fill"></i> Desativar</button>') +
+                '<button class="btn btn-warning btn-sm mr-2" onclick="window.location.href=\'/abe_raca/formulario/' + obj.rac_codigo + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
+                '<button class="btn btn-danger btn-sm btn-excluir" onclick="excluir(\'' + obj.rac_codigo + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
                 '</div>' +
                 '</td>' +
                 '</tr>'
@@ -41,7 +41,7 @@ function load() {
 }
 
 function excluir(id) {
-    UsuarioRemover(id).then(function () {
+    Abe_racaRemover(id).then(function () {
         load();
     }, function (err) {
         alert(err);
@@ -49,7 +49,7 @@ function excluir(id) {
 }
 
 function ativar(id) {
-    UsuarioAtivar(id).then(function () {
+    Abe_racaAtivar(id).then(function () {
       load();
     }, function (err) {
         alert(err);

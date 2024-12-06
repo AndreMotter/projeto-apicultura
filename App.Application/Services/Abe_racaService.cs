@@ -32,6 +32,7 @@ namespace App.Application.Services
                 rac_codigo = p.rac_codigo,
                 rac_descricao = p.rac_descricao,
                 rac_origem = p.rac_origem,
+                rac_status = p.rac_status,
             }).OrderByDescending(x => x.rac_descricao).ToList();
         }
         public void Remover(Guid id)
@@ -55,6 +56,21 @@ namespace App.Application.Services
                 _repository.Update(obj);
             }
 
+            _repository.SaveChanges();
+        }
+
+        public void Ativar(Guid id)
+        {
+            var obj = BuscaPorId(id);
+            if (obj.rac_status)
+            {
+                obj.rac_status = false;
+            }
+            else
+            {
+                obj.rac_status = true;
+            }
+            _repository.Update(obj);
             _repository.SaveChanges();
         }
     }

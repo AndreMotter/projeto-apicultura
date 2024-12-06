@@ -73,5 +73,19 @@ namespace App.Api.Controllers
                 return Json(RetornoApi.Erro(ex.Message));
             }
         }
+
+        [HttpGet("Ativar")]
+        public JsonResult Ativar(Guid id)
+        {
+            try
+            {
+                _service.Ativar(id);
+                return Json(RetornoApi.Sucesso());
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
     }
 }

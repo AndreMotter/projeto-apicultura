@@ -10,5 +10,6 @@ namespace App.Domain.Interfaces.Application
         List<abe_raca> ListaAbe_raca(string abe_raca);
         void Salvar(abe_raca obj);
         void Remover(Guid id);
+        void Ativar(Guid id);
     }
 }
