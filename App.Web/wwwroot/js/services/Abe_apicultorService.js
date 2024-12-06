@@ -58,3 +58,18 @@ async function Abe_apicultorRemover(id) {
         });
     });
 }
+
+async function Abe_apicultorAtivar(id) {
+    return new Promise((resolve, reject) => {
+        Get('Abe_apicultor/Ativar?id=' + id).then(function (response) {
+            if (response.status === 'success') {
+                resolve(response.data);
+            } else {
+                reject(response.message);
+            }
+        }, function (err) {
+            console.error(err);
+            reject('Erro desconhecido');
+        });
+    });
+}

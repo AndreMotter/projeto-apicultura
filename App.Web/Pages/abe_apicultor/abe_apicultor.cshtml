@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-4 col-sm-12">
         <div class="form-group mb-3">
-            <h6>Descrição</h6>
+            <h6>Nome</h6>
             <input type="text" name="descricao" id="descricao" class="form-control">
         </div>
     </div>
@@ -26,20 +26,20 @@
     </div>
 
     <div class="col-md-2 col-sm-12 align-self-center mt-3">
-        <button class="btn btn-primary" onclick="window.location.href='/abe_raca/formulario'" style="width: 100%;">
+        <button class="btn btn-primary" onclick="window.location.href='/abe_apicultor/formulario'" style="width: 100%;">
             <i class="bi bi-plus"></i>
             Adicionar
         </button>
     </div>
 </div>
 
-<h4>Lista de Raças</h4>
+<h4>Lista de Apicultores</h4>
 <div class="table-responsive" id="table">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Descrição</th>
-                <th>Origem</th>
+                <th>Nome</th>
+                <th>CPF/CNPJ</th>
                 <th></th>
             </tr>
         </thead>
@@ -66,5 +66,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/pages/abe_raca/abe_raca.js"></script>
+    <script src="~/js/pages/abe_apicultor/abe_apicultor.js"></script>
 }

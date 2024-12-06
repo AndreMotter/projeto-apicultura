@@ -5,9 +5,10 @@
 function load() {
     let id = getUltimoAlias();
     if (id && id.toLowerCase() !== 'formulario') {
-        Abe_racaBuscaPorId(id).then(function (obj) {
-            $("[name='rac_descricao']").val(obj.rac_descricao);
-            $("[name='rac_origem']").val(obj.rac_origem);
+        Abe_apicultorBuscaPorId(id).then(function (obj) {
+            $("[name='api_nome']").val(obj.api_nome);
+            $("[name='api_cpfcnpj']").val(obj.api_cpfcnpj);
+            $("[name='api_telefone']").val(obj.api_telefone);
         }, function (err) {
             alert(err);
         });
@@ -16,15 +17,16 @@ function load() {
 
 function salvar() {
     let obj = {
-        rac_descricao: ($("[name='rac_descricao']").val() || ''),
-        rac_origem: ($("[name='rac_origem']").val() || ''),
+        api_nome: ($("[name='api_nome']").val() || ''),
+        api_cpfcnpj: ($("[name='api_cpfcnpj']").val() || ''),
+        api_telefone: ($("[name='api_telefone']").val() || ''),
     };
     let id = getUltimoAlias();
     if (id && id.toLowerCase() !== 'formulario') {
         obj.id = id;
     }
-    Abe_racaSalvar(obj).then(function () {
-        window.location.href = '/abe_raca';
+    Abe_apicultorSalvar(obj).then(function () {
+        window.location.href = '/abe_apicultor';
     }, function (err) {
         alert(err);
     });

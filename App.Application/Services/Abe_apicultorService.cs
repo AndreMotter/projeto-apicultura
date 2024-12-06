@@ -32,6 +32,7 @@ namespace App.Application.Services
                 api_codigo = p.api_codigo,
                 api_nome = p.api_nome,
                 api_cpfcnpj = p.api_cpfcnpj,
+                api_status = p.api_status,
             }).OrderByDescending(x => x.api_nome).ToList();
         }
         public void Remover(Guid id)
