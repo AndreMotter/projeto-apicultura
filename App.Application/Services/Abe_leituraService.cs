@@ -1,4 +1,5 @@
-﻿using App.Domain.Entities;
+﻿using App.Domain.DTO;
+using App.Domain.Entities;
 using App.Domain.Interfaces.Application;
 using App.Domain.Interfaces.Repositories;
 using System;
@@ -74,6 +75,35 @@ namespace App.Application.Services
                 tip_codigo = p.tip_codigo,
                 tip_descricao = p.tip_descricao,
             }).ToList();
+        }
+
+        public Abe_grafico_homeDTO BuscarInformacoesGrafico()
+        {
+            var dataLimite = DateTime.Now.AddDays(-30);  // Últimos 30 dias
+
+            var lista_grafico_01 = _repository.Query(p => p.lei_data >= Convert.ToDateTime(dataLimite).ToUniversalTime())  
+            .GroupBy(p => p.tip_codigo)  
+            .Select(g => new Abe_grafico_01_homeDTO
+            {
+                total = g.Count(),
+                tip_descricao = g.FirstOrDefault().abe_tipodeitura.tip_descricao  
+            })
+            .ToList();
+
+            var lista_grafico_02 = _repository.Query(p => p.lei_data >= Convert.ToDateTime(dataLimite).ToUniversalTime())
+            .GroupBy(p => p.col_codigo)
+            .Select(g => new Abe_grafico_02_homeDTO
+            {
+                total = g.Count(),
+                col_descricao = g.FirstOrDefault().abe_colmeia.col_descricao
+            })
+            .ToList();
+
+            Abe_grafico_homeDTO abe_grafico_home = new Abe_grafico_homeDTO();
+            abe_grafico_home.lista_grafico_01 = lista_grafico_01;
+            abe_grafico_home.lista_grafico_02 = lista_grafico_02;
+
+            return abe_grafico_home;
         }
     }
 }

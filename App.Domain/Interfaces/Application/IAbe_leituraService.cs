@@ -1,4 +1,5 @@
-﻿using App.Domain.Entities;
+﻿using App.Domain.DTO;
+using App.Domain.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -9,5 +10,6 @@ namespace App.Domain.Interfaces.Application
         abe_leitura BuscaPorId(Guid id);
         List<abe_leitura> ListaAbe_leitura(Guid? col_codigo, Guid? tip_codigo, DateTime? data_inicial, DateTime? data_final);
         List<abe_tipodeitura> ListaAbe_tipoleitura();
+        Abe_grafico_homeDTO BuscarInformacoesGrafico();
     }
 }

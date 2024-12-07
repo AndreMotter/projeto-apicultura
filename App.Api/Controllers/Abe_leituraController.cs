@@ -48,6 +48,20 @@ namespace App.Api.Controllers
             }
         }
 
+        [HttpGet("BuscarInformacoesGrafico")]
+        public JsonResult BuscarInformacoesGrafico()
+        {
+            try
+            {
+                var obj = _service.BuscarInformacoesGrafico();
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+
         [HttpGet("BuscaPorId")]
         public JsonResult BuscaPorId(Guid id)
         {

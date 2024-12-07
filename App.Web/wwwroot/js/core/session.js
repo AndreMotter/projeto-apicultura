@@ -21,6 +21,7 @@ function VerificaToken() {
                     $('#menus-adm-cadastros').show();
                     $('#menus-adm-lancamentos').show();
                 } 
+                loadGraficos();
             }
             $('#loading').hide();
             $('#label-menu-cadastros').show();
@@ -37,49 +38,76 @@ function VerificaToken() {
     }
 }
 
-// Gráfico de Barras
-var ctx1 = document.getElementById('chart1').getContext('2d');
-var chart1 = new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        datasets: [{
-            label: 'Mel por Comeia',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
 
-var ctx2 = document.getElementById('chart2').getContext('2d');
-var chart2 = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: ['Adalberto', 'Márcio', 'Adalcir', 'José', 'Mario'],
-        datasets: [{
-            label: 'Mel por Apicultor',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+function loadGraficos() {
+    Abe_leituraBuscarInformacoesGrafico().then(function (obj) {
+        debugger 
+        var labels1 = obj.lista_grafico_01.map(function (item) {
+            return item.tip_descricao; // Extrai a descrição do tipo
+        });
+
+        var data1 = obj.lista_grafico_01.map(function (item) {
+            return item.total; // Extrai o total
+        });
+
+        var ctx1 = document.getElementById('chart1').getContext('2d');
+        var chart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: labels1,
+                datasets: [{
+                    label: 'Quantidade Leituras (Últimos 30 dias)',
+                    data: data1,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
-        }
-    }
-});
+        });
+
+        var labels2 = obj.lista_grafico_02.map(function (item) {
+            return item.col_descricao; // Extrai a descrição da colmeia
+        });
+
+        var data2 = obj.lista_grafico_02.map(function (item) {
+            return item.total; // Extrai o total
+        });
+
+        var ctx2 = document.getElementById('chart2').getContext('2d');
+        var chart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: labels2,
+                datasets: [{
+                    label: 'Quantidade Leituras (Últimos 30 dias)',
+                    data: data2,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Verde claro (transparente)
+                    borderColor: 'rgba(75, 192, 192, 1)',  // Verde escuro (opaco)
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }, function (err) {
+        alert(err);
+    });
+}
+
+
+
+
