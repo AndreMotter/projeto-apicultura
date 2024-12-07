@@ -13,6 +13,6 @@ namespace App.Domain.Entities
         public DateTime log_data { get; set; }
         [ForeignKey("usuario")]
         public Guid usu_codigo { get; set; }
-        public virtual abe_usuario usuario { get; set; }
+        public virtual Usuario usuario { get; set; }
     }
 }

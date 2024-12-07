@@ -1,19 +1,22 @@
 ﻿
 $(document).ready(function () {
-    $('#descricao').keypress(function (e) {
+    $('#rac_descricao').keypress(function (e) {
         if (e.which === 13) {
             load();
         }
+    });
+    $('#rac_ativo').change(function (e) {
+        load();
     });
     load();
 });
 
 function load() {
-    let abe_raca = $('#descricao').val() || '';
-    let rac_ativo = parseInt($('#rac_ativo').val()) || 0;
+    let rac_descricao = $('#rac_descricao').val() || '';
+    let rac_status = parseInt($('#rac_status').val()) || 0;
     $('#table').hide();
     $('#table-loading').show();
-    Abe_racaListaAbe_raca(abe_raca).then(function (data) {
+    Abe_racaListaAbe_raca(rac_descricao, rac_status).then(function (data) {
         $('#table tbody').html('');
         data.forEach(obj => {
             $('#table tbody').append(

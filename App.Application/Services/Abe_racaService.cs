@@ -24,10 +24,11 @@ namespace App.Application.Services
             return obj;
         }
 
-        public List<abe_raca> ListaAbe_raca(string abe_raca)
+        public List<abe_raca> ListaAbe_raca(string rac_descricao, int rac_status)
         {
-            abe_raca = abe_raca ?? "";
-            return _repository.Query(x => x.rac_descricao.ToUpper().Contains(abe_raca.ToUpper())).Select(p => new abe_raca
+            rac_descricao = rac_descricao ?? "";
+            return _repository.Query(x => x.rac_descricao.ToUpper().Contains(abe_raca.ToUpper())
+            && rac_status == 0 ? (x.rac_status == false || x.rac_status == true) : x.rac_status == (rac_status == 1 ? true : false)).Select(p => new abe_raca
             {
                 rac_codigo = p.rac_codigo,
                 rac_descricao = p.rac_descricao,
@@ -49,6 +50,7 @@ namespace App.Application.Services
 
             if (obj.rac_codigo == Guid.Empty)
             {
+                obj.rac_status = true;
                 _repository.Save(obj);
             }
             else

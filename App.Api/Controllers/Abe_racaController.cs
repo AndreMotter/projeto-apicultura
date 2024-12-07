@@ -18,12 +18,12 @@ namespace App.Api.Controllers
         }
 
         [HttpGet("ListaAbe_raca")]
-        public JsonResult ListaAbe_raca(string abe_raca)
+        public JsonResult ListaAbe_raca(string rac_descricao, int rac_status)
         {
             try
             {
                
-                var obj = _service.ListaAbe_raca(abe_raca);
+                var obj = _service.ListaAbe_raca(rac_descricao, rac_status);
                 return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)

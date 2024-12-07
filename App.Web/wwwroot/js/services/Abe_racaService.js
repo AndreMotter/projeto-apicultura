@@ -1,6 +1,6 @@
-async function Abe_racaListaAbe_raca(abe_raca) {
+async function Abe_racaListaAbe_raca(rac_descricao, rac_status) {
     return new Promise((resolve, reject) => {
-        Get('Abe_raca/ListaAbe_raca?abe_raca=' + abe_raca).then(function (response) {
+        Get('Abe_raca/ListaAbe_raca?rac_descricao=' + rac_descricao + '&rac_status=' + rac_status).then(function (response) {
             console.log(response)
             if (response.status === 'success') {
                 resolve(response.data);
