@@ -4,21 +4,50 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="form-group mb-12">
                     <label>Descrição</label>
-                    <input type="text" name="rac_descricao" class="form-control">
+                    <input type="text" name="col_descricao" class="form-control">
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="form-group mb-12">
-                    <label>Origem</label>
-                    <input type="text" name="rac_origem" class="form-control">
+                    <label>Data de Instalação</label>
+                    <input type="date" name="col_datainstalacao" class="form-control">
                 </div>
             </div>
-           
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Número</label>
+                    <input type="number" name="col_numero" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Latitude</label>
+                    <input type="number" step="0.0001" name="col_latitude" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Longitude</label>
+                    <input type="number" step="0.0001" name="col_longitude" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Raça</label>
+                    <select class="js-example-basic-single" style="width:100%" name="abe_codigo" id="abe_codigo">
+                    </select>
+                </div>
+            </div>
+
             <div class="col-md-12 text-right">
-                <button class="btn btn-danger" onclick="window.location.href='/abe_raca'">Cancelar</button>
+                <button class="btn btn-danger" onclick="window.location.href='/abe_colmeia'">Cancelar</button>
                 <button class="btn btn-success" onclick="salvar();">Salvar</button>
             </div>
         </div>

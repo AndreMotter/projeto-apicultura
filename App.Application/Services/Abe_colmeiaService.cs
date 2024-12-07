@@ -33,6 +33,7 @@ namespace App.Application.Services
                 col_numero = p.col_numero,
                 col_datainstalacao = p.col_datainstalacao,
                 col_descricao = p.col_descricao,
+                col_status = p.col_status,
                 abe_raca = new abe_raca
                 {
                     rac_descricao = p.abe_raca.rac_descricao,
