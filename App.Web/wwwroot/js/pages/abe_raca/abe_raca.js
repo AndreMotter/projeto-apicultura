@@ -58,3 +58,19 @@ function ativar(id) {
         alert(err);
     });
 }
+
+function Imprimir() {
+    $('#loadingModal').modal();
+    let rac_descricao = $('#rac_descricao').val() || '';
+    let rac_status = parseInt($('#rac_status').val()) || 0;
+    Abe_racaImprimir(rac_descricao, rac_status).then(function (data) {
+        let arrrayBuffer = base64ToArrayBuffer(data);
+        let blob = new Blob([arrrayBuffer], { type: "application/pdf" });
+        let link = window.URL.createObjectURL(blob);
+        window.open(link, '_blank');
+        $('#loadingModal').modal('hide');
+    }, function (err) {
+        $('#loadingModal').modal('hide');
+        alert(err);
+    });
+}
