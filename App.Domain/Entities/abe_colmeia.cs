@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Entities
 {
@@ -13,7 +14,8 @@ namespace App.Domain.Entities
         public int col_numero { get; set; }
         public decimal col_latitude { get; set; }
         public decimal col_longitude { get; set; }
+        [ForeignKey("abe_raca")]
         public Guid rac_codigo { get; set; }
-        public abe_raca abe_raca { get; set; }
+        public virtual abe_raca abe_raca { get; set; }
     }
 }

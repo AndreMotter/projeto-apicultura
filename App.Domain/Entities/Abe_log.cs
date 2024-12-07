@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Entities
 {
@@ -10,7 +11,8 @@ namespace App.Domain.Entities
         public string log_tabela { get; set; }
         public string log_operacao { get; set; }
         public DateTime log_data { get; set; }
+        [ForeignKey("usuario")]
         public Guid usu_codigo { get; set; }
-        public Usuario usuario { get; set; }
+        public virtual abe_usuario usuario { get; set; }
     }
 }

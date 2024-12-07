@@ -22,92 +22,6 @@ namespace App.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("App.Domain.Entities.Cidade", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Cep")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Uf")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cidade");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.CodigoAcesso", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Codigo")
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("CodigoAcesso");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.HistoricoAcessos", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("Data")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Operacao")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("HistoricoAcessos");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.Nfc", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("UsuarioId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Nfc");
-                });
-
             modelBuilder.Entity("App.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -116,9 +30,6 @@ namespace App.Persistence.Migrations
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("boolean");
-
-                    b.Property<Guid?>("CidadeId")
-                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("DataNascimento")
                         .HasColumnType("timestamp with time zone");
@@ -137,8 +48,6 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CidadeId");
-
                     b.ToTable("Usuario");
                 });
 
@@ -146,9 +55,6 @@ namespace App.Persistence.Migrations
                 {
                     b.Property<Guid>("apa_codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_apicultorapi_codigo")
                         .HasColumnType("uuid");
 
                     b.Property<string>("apa_descricao")
@@ -162,7 +68,7 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("apa_codigo");
 
-                    b.HasIndex("abe_apicultorapi_codigo");
+                    b.HasIndex("api_codigoresponsavel");
 
                     b.ToTable("abe_apiario");
                 });
@@ -196,12 +102,6 @@ namespace App.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("abe_apicultorapi_codigo")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_colmeiacol_codigo")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("api_codigo")
                         .HasColumnType("uuid");
 
@@ -219,9 +119,9 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("cpi_codigo");
 
-                    b.HasIndex("abe_apicultorapi_codigo");
+                    b.HasIndex("api_codigo");
 
-                    b.HasIndex("abe_colmeiacol_codigo");
+                    b.HasIndex("col_codigo");
 
                     b.ToTable("abe_apicultorcolmeia");
                 });
@@ -230,9 +130,6 @@ namespace App.Persistence.Migrations
                 {
                     b.Property<Guid>("col_codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_racarac_codigo")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("col_datainstalacao")
@@ -258,7 +155,7 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("col_codigo");
 
-                    b.HasIndex("abe_racarac_codigo");
+                    b.HasIndex("rac_codigo");
 
                     b.ToTable("abe_colmeia");
                 });
@@ -267,12 +164,6 @@ namespace App.Persistence.Migrations
                 {
                     b.Property<Guid>("ins_codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_apicultorapi_codigo")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_colmeiacol_codigo")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("api_codigo")
@@ -292,9 +183,9 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("ins_codigo");
 
-                    b.HasIndex("abe_apicultorapi_codigo");
+                    b.HasIndex("api_codigo");
 
-                    b.HasIndex("abe_colmeiacol_codigo");
+                    b.HasIndex("col_codigo");
 
                     b.ToTable("abe_inspecao");
                 });
@@ -303,12 +194,6 @@ namespace App.Persistence.Migrations
                 {
                     b.Property<Guid>("lei_codigo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_colmeiacol_codigo")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("abe_tipodeituratip_codigo")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("col_codigo")
@@ -325,11 +210,36 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("lei_codigo");
 
-                    b.HasIndex("abe_colmeiacol_codigo");
+                    b.HasIndex("col_codigo");
 
-                    b.HasIndex("abe_tipodeituratip_codigo");
+                    b.HasIndex("tip_codigo");
 
                     b.ToTable("abe_leitura");
+                });
+
+            modelBuilder.Entity("App.Domain.Entities.abe_log", b =>
+                {
+                    b.Property<Guid>("log_codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("log_data")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("log_operacao")
+                        .HasColumnType("text");
+
+                    b.Property<string>("log_tabela")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("usu_codigo")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("log_codigo");
+
+                    b.HasIndex("usu_codigo");
+
+                    b.ToTable("abe_log");
                 });
 
             modelBuilder.Entity("App.Domain.Entities.abe_raca", b =>
@@ -358,9 +268,6 @@ namespace App.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("abe_unidademedidauni_codigo")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("tip_descricao")
                         .HasColumnType("text");
 
@@ -369,7 +276,7 @@ namespace App.Persistence.Migrations
 
                     b.HasKey("tip_codigo");
 
-                    b.HasIndex("abe_unidademedidauni_codigo");
+                    b.HasIndex("uni_codigo");
 
                     b.ToTable("abe_tipodeitura");
                 });
@@ -388,51 +295,13 @@ namespace App.Persistence.Migrations
                     b.ToTable("abe_unidademedida");
                 });
 
-            modelBuilder.Entity("App.Domain.Entities.CodigoAcesso", b =>
-                {
-                    b.HasOne("App.Domain.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.HistoricoAcessos", b =>
-                {
-                    b.HasOne("App.Domain.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.Nfc", b =>
-                {
-                    b.HasOne("App.Domain.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("App.Domain.Entities.Usuario", b =>
-                {
-                    b.HasOne("App.Domain.Entities.Cidade", "Cidade")
-                        .WithMany()
-                        .HasForeignKey("CidadeId");
-
-                    b.Navigation("Cidade");
-                });
-
             modelBuilder.Entity("App.Domain.Entities.abe_apiario", b =>
                 {
                     b.HasOne("App.Domain.Entities.abe_apicultor", "abe_apicultor")
                         .WithMany()
-                        .HasForeignKey("abe_apicultorapi_codigo");
+                        .HasForeignKey("api_codigoresponsavel")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("abe_apicultor");
                 });
@@ -441,11 +310,15 @@ namespace App.Persistence.Migrations
                 {
                     b.HasOne("App.Domain.Entities.abe_apicultor", "abe_apicultor")
                         .WithMany()
-                        .HasForeignKey("abe_apicultorapi_codigo");
+                        .HasForeignKey("api_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Entities.abe_colmeia", "abe_colmeia")
                         .WithMany()
-                        .HasForeignKey("abe_colmeiacol_codigo");
+                        .HasForeignKey("col_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("abe_apicultor");
 
@@ -456,7 +329,9 @@ namespace App.Persistence.Migrations
                 {
                     b.HasOne("App.Domain.Entities.abe_raca", "abe_raca")
                         .WithMany()
-                        .HasForeignKey("abe_racarac_codigo");
+                        .HasForeignKey("rac_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("abe_raca");
                 });
@@ -465,11 +340,15 @@ namespace App.Persistence.Migrations
                 {
                     b.HasOne("App.Domain.Entities.abe_apicultor", "abe_apicultor")
                         .WithMany()
-                        .HasForeignKey("abe_apicultorapi_codigo");
+                        .HasForeignKey("api_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Entities.abe_colmeia", "abe_colmeia")
                         .WithMany()
-                        .HasForeignKey("abe_colmeiacol_codigo");
+                        .HasForeignKey("col_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("abe_apicultor");
 
@@ -480,22 +359,39 @@ namespace App.Persistence.Migrations
                 {
                     b.HasOne("App.Domain.Entities.abe_colmeia", "abe_colmeia")
                         .WithMany()
-                        .HasForeignKey("abe_colmeiacol_codigo");
+                        .HasForeignKey("col_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("App.Domain.Entities.abe_tipodeitura", "abe_tipodeitura")
                         .WithMany()
-                        .HasForeignKey("abe_tipodeituratip_codigo");
+                        .HasForeignKey("tip_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("abe_colmeia");
 
                     b.Navigation("abe_tipodeitura");
                 });
 
+            modelBuilder.Entity("App.Domain.Entities.abe_log", b =>
+                {
+                    b.HasOne("App.Domain.Entities.Usuario", "usuario")
+                        .WithMany()
+                        .HasForeignKey("usu_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuario");
+                });
+
             modelBuilder.Entity("App.Domain.Entities.abe_tipodeitura", b =>
                 {
                     b.HasOne("App.Domain.Entities.abe_unidademedida", "abe_unidademedida")
                         .WithMany()
-                        .HasForeignKey("abe_unidademedidauni_codigo");
+                        .HasForeignKey("uni_codigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("abe_unidademedida");
                 });

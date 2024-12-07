@@ -16,6 +16,7 @@ namespace App.Application
             services.AddTransient<IAbe_racaService, Abe_racaService>();
             services.AddTransient<IAbe_colmeiaService, Abe_colmeiaService>();
             services.AddTransient<IAbe_apicultorService, Abe_apicultorService>();
+            services.AddTransient<IAbe_leituraService, Abe_leituraService>();
         }
     }
 }

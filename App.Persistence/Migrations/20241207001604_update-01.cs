@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class update14 : Migration
+    public partial class update01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,23 +53,40 @@ namespace App.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usuario",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Nome = table.Column<string>(type: "text", nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false),
+                    Login = table.Column<string>(type: "text", nullable: true),
+                    Senha = table.Column<string>(type: "text", nullable: true),
+                    Permissao = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "abe_apiario",
                 columns: table => new
                 {
                     apa_codigo = table.Column<Guid>(type: "uuid", nullable: false),
                     apa_descricao = table.Column<string>(type: "text", nullable: true),
                     apa_endereco = table.Column<string>(type: "text", nullable: true),
-                    api_codigoresponsavel = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_apicultorapi_codigo = table.Column<Guid>(type: "uuid", nullable: true)
+                    api_codigoresponsavel = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_abe_apiario", x => x.apa_codigo);
                     table.ForeignKey(
-                        name: "FK_abe_apiario_abe_apicultor_abe_apicultorapi_codigo",
-                        column: x => x.abe_apicultorapi_codigo,
+                        name: "FK_abe_apiario_abe_apicultor_api_codigoresponsavel",
+                        column: x => x.api_codigoresponsavel,
                         principalTable: "abe_apicultor",
-                        principalColumn: "api_codigo");
+                        principalColumn: "api_codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,17 +100,17 @@ namespace App.Persistence.Migrations
                     col_numero = table.Column<int>(type: "integer", nullable: false),
                     col_latitude = table.Column<decimal>(type: "numeric", nullable: false),
                     col_longitude = table.Column<decimal>(type: "numeric", nullable: false),
-                    rac_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_racarac_codigo = table.Column<Guid>(type: "uuid", nullable: true)
+                    rac_codigo = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_abe_colmeia", x => x.col_codigo);
                     table.ForeignKey(
-                        name: "FK_abe_colmeia_abe_raca_abe_racarac_codigo",
-                        column: x => x.abe_racarac_codigo,
+                        name: "FK_abe_colmeia_abe_raca_rac_codigo",
+                        column: x => x.rac_codigo,
                         principalTable: "abe_raca",
-                        principalColumn: "rac_codigo");
+                        principalColumn: "rac_codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,17 +119,38 @@ namespace App.Persistence.Migrations
                 {
                     tip_codigo = table.Column<Guid>(type: "uuid", nullable: false),
                     tip_descricao = table.Column<string>(type: "text", nullable: true),
-                    uni_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_unidademedidauni_codigo = table.Column<Guid>(type: "uuid", nullable: true)
+                    uni_codigo = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_abe_tipodeitura", x => x.tip_codigo);
                     table.ForeignKey(
-                        name: "FK_abe_tipodeitura_abe_unidademedida_abe_unidademedidauni_codi~",
-                        column: x => x.abe_unidademedidauni_codigo,
+                        name: "FK_abe_tipodeitura_abe_unidademedida_uni_codigo",
+                        column: x => x.uni_codigo,
                         principalTable: "abe_unidademedida",
-                        principalColumn: "uni_codigo");
+                        principalColumn: "uni_codigo",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "abe_log",
+                columns: table => new
+                {
+                    log_codigo = table.Column<Guid>(type: "uuid", nullable: false),
+                    log_tabela = table.Column<string>(type: "text", nullable: true),
+                    log_operacao = table.Column<string>(type: "text", nullable: true),
+                    log_data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    usu_codigo = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_abe_log", x => x.log_codigo);
+                    table.ForeignKey(
+                        name: "FK_abe_log_Usuario_usu_codigo",
+                        column: x => x.usu_codigo,
+                        principalTable: "Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,23 +162,23 @@ namespace App.Persistence.Migrations
                     cpi_status = table.Column<bool>(type: "boolean", nullable: false),
                     cpi_datainicio = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     col_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_colmeiacol_codigo = table.Column<Guid>(type: "uuid", nullable: true),
-                    api_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_apicultorapi_codigo = table.Column<Guid>(type: "uuid", nullable: true)
+                    api_codigo = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_abe_apicultorcolmeia", x => x.cpi_codigo);
                     table.ForeignKey(
-                        name: "FK_abe_apicultorcolmeia_abe_apicultor_abe_apicultorapi_codigo",
-                        column: x => x.abe_apicultorapi_codigo,
+                        name: "FK_abe_apicultorcolmeia_abe_apicultor_api_codigo",
+                        column: x => x.api_codigo,
                         principalTable: "abe_apicultor",
-                        principalColumn: "api_codigo");
+                        principalColumn: "api_codigo",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_abe_apicultorcolmeia_abe_colmeia_abe_colmeiacol_codigo",
-                        column: x => x.abe_colmeiacol_codigo,
+                        name: "FK_abe_apicultorcolmeia_abe_colmeia_col_codigo",
+                        column: x => x.col_codigo,
                         principalTable: "abe_colmeia",
-                        principalColumn: "col_codigo");
+                        principalColumn: "col_codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,23 +190,23 @@ namespace App.Persistence.Migrations
                     ins_situacao = table.Column<int>(type: "integer", nullable: false),
                     ins_observacao = table.Column<string>(type: "text", nullable: true),
                     api_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_apicultorapi_codigo = table.Column<Guid>(type: "uuid", nullable: true),
-                    col_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_colmeiacol_codigo = table.Column<Guid>(type: "uuid", nullable: true)
+                    col_codigo = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_abe_inspecao", x => x.ins_codigo);
                     table.ForeignKey(
-                        name: "FK_abe_inspecao_abe_apicultor_abe_apicultorapi_codigo",
-                        column: x => x.abe_apicultorapi_codigo,
+                        name: "FK_abe_inspecao_abe_apicultor_api_codigo",
+                        column: x => x.api_codigo,
                         principalTable: "abe_apicultor",
-                        principalColumn: "api_codigo");
+                        principalColumn: "api_codigo",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_abe_inspecao_abe_colmeia_abe_colmeiacol_codigo",
-                        column: x => x.abe_colmeiacol_codigo,
+                        name: "FK_abe_inspecao_abe_colmeia_col_codigo",
+                        column: x => x.col_codigo,
                         principalTable: "abe_colmeia",
-                        principalColumn: "col_codigo");
+                        principalColumn: "col_codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,9 +215,7 @@ namespace App.Persistence.Migrations
                 {
                     lei_codigo = table.Column<Guid>(type: "uuid", nullable: false),
                     col_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_colmeiacol_codigo = table.Column<Guid>(type: "uuid", nullable: true),
                     tip_codigo = table.Column<Guid>(type: "uuid", nullable: false),
-                    abe_tipodeituratip_codigo = table.Column<Guid>(type: "uuid", nullable: true),
                     lei_data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     lei_valor = table.Column<decimal>(type: "numeric", nullable: false)
                 },
@@ -187,61 +223,68 @@ namespace App.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_abe_leitura", x => x.lei_codigo);
                     table.ForeignKey(
-                        name: "FK_abe_leitura_abe_colmeia_abe_colmeiacol_codigo",
-                        column: x => x.abe_colmeiacol_codigo,
+                        name: "FK_abe_leitura_abe_colmeia_col_codigo",
+                        column: x => x.col_codigo,
                         principalTable: "abe_colmeia",
-                        principalColumn: "col_codigo");
+                        principalColumn: "col_codigo",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_abe_leitura_abe_tipodeitura_abe_tipodeituratip_codigo",
-                        column: x => x.abe_tipodeituratip_codigo,
+                        name: "FK_abe_leitura_abe_tipodeitura_tip_codigo",
+                        column: x => x.tip_codigo,
                         principalTable: "abe_tipodeitura",
-                        principalColumn: "tip_codigo");
+                        principalColumn: "tip_codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_apiario_abe_apicultorapi_codigo",
+                name: "IX_abe_apiario_api_codigoresponsavel",
                 table: "abe_apiario",
-                column: "abe_apicultorapi_codigo");
+                column: "api_codigoresponsavel");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_apicultorcolmeia_abe_apicultorapi_codigo",
+                name: "IX_abe_apicultorcolmeia_api_codigo",
                 table: "abe_apicultorcolmeia",
-                column: "abe_apicultorapi_codigo");
+                column: "api_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_apicultorcolmeia_abe_colmeiacol_codigo",
+                name: "IX_abe_apicultorcolmeia_col_codigo",
                 table: "abe_apicultorcolmeia",
-                column: "abe_colmeiacol_codigo");
+                column: "col_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_colmeia_abe_racarac_codigo",
+                name: "IX_abe_colmeia_rac_codigo",
                 table: "abe_colmeia",
-                column: "abe_racarac_codigo");
+                column: "rac_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_inspecao_abe_apicultorapi_codigo",
+                name: "IX_abe_inspecao_api_codigo",
                 table: "abe_inspecao",
-                column: "abe_apicultorapi_codigo");
+                column: "api_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_inspecao_abe_colmeiacol_codigo",
+                name: "IX_abe_inspecao_col_codigo",
                 table: "abe_inspecao",
-                column: "abe_colmeiacol_codigo");
+                column: "col_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_leitura_abe_colmeiacol_codigo",
+                name: "IX_abe_leitura_col_codigo",
                 table: "abe_leitura",
-                column: "abe_colmeiacol_codigo");
+                column: "col_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_leitura_abe_tipodeituratip_codigo",
+                name: "IX_abe_leitura_tip_codigo",
                 table: "abe_leitura",
-                column: "abe_tipodeituratip_codigo");
+                column: "tip_codigo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_abe_tipodeitura_abe_unidademedidauni_codigo",
+                name: "IX_abe_log_usu_codigo",
+                table: "abe_log",
+                column: "usu_codigo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_abe_tipodeitura_uni_codigo",
                 table: "abe_tipodeitura",
-                column: "abe_unidademedidauni_codigo");
+                column: "uni_codigo");
         }
 
         /// <inheritdoc />
@@ -260,6 +303,9 @@ namespace App.Persistence.Migrations
                 name: "abe_leitura");
 
             migrationBuilder.DropTable(
+                name: "abe_log");
+
+            migrationBuilder.DropTable(
                 name: "abe_apicultor");
 
             migrationBuilder.DropTable(
@@ -267,6 +313,9 @@ namespace App.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "abe_tipodeitura");
+
+            migrationBuilder.DropTable(
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "abe_raca");

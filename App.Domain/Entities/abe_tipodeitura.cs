@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Entities
 {
@@ -8,7 +9,8 @@ namespace App.Domain.Entities
         [Key]
         public Guid tip_codigo { get; set; }
         public string tip_descricao { get; set; }
+        [ForeignKey("abe_unidademedida")]
         public Guid uni_codigo { get; set; }
-        public abe_unidademedida abe_unidademedida { get; set; }
+        public virtual abe_unidademedida abe_unidademedida { get; set; }
     }
 }
