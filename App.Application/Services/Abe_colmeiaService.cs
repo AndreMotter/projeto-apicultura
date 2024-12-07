@@ -24,12 +24,14 @@ namespace App.Application.Services
             return obj;
         }
 
-        public List<abe_colmeia> ListaAbe_colmeia(string abe_colmeia)
+        public List<abe_colmeia> ListaAbe_colmeia(string col_descricao, int col_status)
         {
-            abe_colmeia = abe_colmeia ?? "";
-            return _repository.Query(x => x.col_descricao.ToUpper().Contains(abe_colmeia.ToUpper())).Select(p => new abe_colmeia
+            col_descricao = col_descricao ?? "";
+            return _repository.Query(x => x.col_descricao.ToUpper().Contains(col_descricao.ToUpper())).Select(p => new abe_colmeia
             {
                 col_codigo = p.col_codigo,
+                col_numero = p.col_numero,
+                col_datainstalacao = p.col_datainstalacao,
                 col_descricao = p.col_descricao,
                 abe_raca = new abe_raca
                 {

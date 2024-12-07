@@ -1,6 +1,6 @@
-async function Abe_colmeiaListaAbe_colmeia(abe_colmeia) {
+async function Abe_colmeiaListaAbe_colmeia(col_descricao, col_status) {
     return new Promise((resolve, reject) => {
-        Get('Abe_colmeia/ListaAbe_colmeia?abe_colmeia=' + abe_colmeia).then(function (response) {
+        Get('Abe_colmeia/ListaAbe_colmeia?col_descricao=' + col_descricao + '&col_status' + col_status).then(function (response) {
             console.log(response)
             if (response.status === 'success') {
                 resolve(response.data);

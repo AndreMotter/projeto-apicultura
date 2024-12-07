@@ -5,7 +5,7 @@ $(document).ready(function () {
             load();
         }
     });
-    $('#rac_ativo').change(function (e) {
+    $('#rac_status').change(function (e) {
         load();
     });
     load();

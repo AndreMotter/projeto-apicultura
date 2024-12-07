@@ -3,6 +3,7 @@ using App.Domain.Entities;
 using App.Domain.Interfaces.Application;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace App.Api.Controllers
 {
@@ -18,12 +19,12 @@ namespace App.Api.Controllers
         }
 
         [HttpGet("ListaAbe_colmeia")]
-        public JsonResult ListaAbe_colmeia(string Abe_colmeia)
+        public JsonResult ListaAbe_colmeia(string col_descricao, int col_status)
         {
-            try
+            try 
             {
                
-                var obj = _service.ListaAbe_colmeia(Abe_colmeia);
+                var obj = _service.ListaAbe_colmeia(col_descricao, col_status);
                 return Json(RetornoApi.Sucesso(obj));
             }
             catch (Exception ex)

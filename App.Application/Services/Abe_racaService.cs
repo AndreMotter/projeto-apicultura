@@ -27,7 +27,7 @@ namespace App.Application.Services
         public List<abe_raca> ListaAbe_raca(string rac_descricao, int rac_status)
         {
             rac_descricao = rac_descricao ?? "";
-            return _repository.Query(x => x.rac_descricao.ToUpper().Contains(abe_raca.ToUpper())
+            return _repository.Query(x => x.rac_descricao.ToUpper().Contains(rac_descricao.ToUpper())
             && rac_status == 0 ? (x.rac_status == false || x.rac_status == true) : x.rac_status == (rac_status == 1 ? true : false)).Select(p => new abe_raca
             {
                 rac_codigo = p.rac_codigo,
