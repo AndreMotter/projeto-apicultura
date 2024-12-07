@@ -14,6 +14,23 @@ async function Abe_leituraListaAbe_leitura(abe_leitura) {
     });
 }
 
+async function Abe_leituraListaAbe_tipoleitura() {
+    return new Promise((resolve, reject) => {
+        Get('Abe_leitura/ListaAbe_tipoleitura').then(function (response) {
+            console.log(response)
+            if (response.status === 'success') {
+                resolve(response.data);
+            } else {
+                reject(response.message);
+            }
+        }, function (err) {
+            console.error(err);
+            reject('Erro desconhecido');
+        });
+    });
+}
+
+
 async function Abe_leituraBuscaPorId(id) {
     return new Promise((resolve, reject) => {
         Get('Abe_leitura/BuscaPorId?id=' + id).then(function (response) {

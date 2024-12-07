@@ -1,20 +1,33 @@
 ﻿@page "/abe_leitura"
 
 <div class="row">
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-2 col-sm-12">
         <div class="form-group mb-3">
-            <h6>Descrição</h6>
-            <input type="text" name="descricao" id="descricao" class="form-control">
+            <h6>Data Inicial</h6>
+            <input type="date" name="data_inicial" id="data_inicial" class="form-control">
         </div>
     </div>
 
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-2 col-sm-12">
         <div class="form-group mb-3">
-            <h6>Status</h6>
-            <select name="rac_ativo" id="rac_ativo" class="form-control">
-                <option value="0">Todos</option>
-                <option value="1">Ativo</option>
-                <option value="2">Inativo</option>
+            <h6>Data Final</h6>
+            <input type="date" name="data_final" id="data_final" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="col-md-3 col-sm-12">
+        <div class="form-group mb-12">
+            <label>Colmeia</label>
+            <select class="js-example-basic-single" style="width:100%" name="col_codigo" id="col_codigo">
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-12">
+        <div class="form-group mb-12">
+            <label>Tipo Leitura</label>
+            <select class="js-example-basic-single" style="width:100%" name="tip_codigo" id="tip_codigo">
             </select>
         </div>
     </div>
@@ -25,12 +38,6 @@
         </button>
     </div>
 
-    <div class="col-md-2 col-sm-12 align-self-center mt-3">
-        <button class="btn btn-primary" onclick="window.location.href='/abe_raca/formulario'" style="width: 100%;">
-            <i class="bi bi-plus"></i>
-            Adicionar
-        </button>
-    </div>
 </div>
 
 <h4>Lista de Leituras</h4>
@@ -42,6 +49,7 @@
                 <th>Valor</th>
                 <th>Colmeia</th>
                 <th>Tipo Leitura</th>
+                <th>Unidade Medida</th>
                 <th></th>
             </tr>
         </thead>

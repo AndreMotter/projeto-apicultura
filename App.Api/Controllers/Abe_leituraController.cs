@@ -32,6 +32,22 @@ namespace App.Api.Controllers
             }
         }
 
+
+        [HttpGet("ListaAbe_tipoleitura")]
+        public JsonResult ListaAbe_tipoleitura()
+        {
+            try
+            {
+
+                var obj = _service.ListaAbe_tipoleitura();
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+
         [HttpGet("BuscaPorId")]
         public JsonResult BuscaPorId(Guid id)
         {

@@ -6,7 +6,25 @@ $(document).ready(function () {
         }
     });
     load();
+    loadColmeia();
+    loadTipoLeitura();
 });
+function loadColmeia() {
+    Abe_colmeiaListaAbe_colmeia('', 0).then(function (data) {
+        data.forEach(obj => {
+            $('#col_codigo').append('<option value="' + obj.col_codigo + '">' + obj.col_descricao + '</option>');
+        });
+        $('#col_codigo').select2();
+    });
+}
+function loadTipoLeitura() {
+    Abe_leituraListaAbe_tipoleitura().then(function (data) {
+        data.forEach(obj => {
+            $('#tip_codigo').append('<option value="' + obj.tip_codigo + '">' + obj.tip_descricao + '</option>');
+        });
+        $('#tip_codigo').select2();
+    });
+}
 
 function load() {
     let abe_leitura = $('#descricao').val() || '';
@@ -16,17 +34,18 @@ function load() {
     Abe_leituraListaAbe_leitura(abe_leitura).then(function (data) {
         $('#table tbody').html('');
         data.forEach(obj => {
+            let data = moment(obj.lei_data || '');
+            let data_formatada = data.format('DD/MM/YYYY HH:mm:ss')
+
             $('#table tbody').append(
                 '<tr>' +
-                '<td>' + (obj.lei_data || '--') + '</td>' +
-                '<td>' + (obj.lei_valor || '--') + '</td>' +
-                '<td>' + (obj.col_descricao || '--') + '</td>' +
-                '<td>' + (obj.tip_descricao || '--') + '</td>' +
+                '<td>' + (data_formatada || '--') + '</td>' +
+                '<td>' + (obj.lei_valor + ' ' + obj.abe_tipodeitura.abe_unidademedida.uni_representante || '--') + '</td>' +
+                '<td>' + (obj.abe_colmeia.col_descricao || '--') + '</td>' +
+                '<td>' + (obj.abe_tipodeitura.tip_descricao || '--') + '</td>' +
+                '<td>' + (obj.abe_tipodeitura.abe_unidademedida.uni_descricao || '--') + '</td>' +
                 '<td class="text-right">' +
                 '<div class="btn-group" role="group">' +
-                (!obj.rac_status ? '<button class="btn btn-danger btn-sm mr-2" onclick="ativar(\'' + obj.rac_codigo + '\')"> <i class="bi bi-hand-thumbs-down-fill"></i> Ativar</button>' :
-                    '<button class="btn btn-success btn-sm mr-2" onclick="ativar(\'' + obj.rac_codigo + '\')"><i class="bi bi-hand-thumbs-up-fill"></i> Desativar</button>') +
-                '<button class="btn btn-warning btn-sm mr-2" onclick="window.location.href=\'/Abe_leitura/formulario/' + obj.rac_codigo + '\'"><i class="bi bi-pencil-fill"></i> Editar</button>' +
                 '<button class="btn btn-danger btn-sm btn-excluir" onclick="excluir(\'' + obj.rac_codigo + '\');"><i class="bi bi-trash-fill"></i> Excluir</button>' +
                 '</div>' +
                 '</td>' +

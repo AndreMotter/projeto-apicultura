@@ -10,9 +10,11 @@ namespace App.Application.Services
     public class Abe_leituraService : IAbe_leituraService
     {
         private IRepositoryBase<abe_leitura> _repository { get; set; }
-        public Abe_leituraService(IRepositoryBase<abe_leitura> repository)
+        private IRepositoryBase<abe_tipodeitura> _repositoryAbe_tipodeitura { get; set; }
+        public Abe_leituraService(IRepositoryBase<abe_leitura> repository, IRepositoryBase<abe_tipodeitura> repositoryAbe_tipodeitura)
         {
             _repository = repository;
+            _repositoryAbe_tipodeitura = repositoryAbe_tipodeitura;
         }
         public abe_leitura BuscaPorId(Guid id)
         {
@@ -54,10 +56,24 @@ namespace App.Application.Services
                 abe_tipodeitura = new abe_tipodeitura
                 {
                     tip_descricao = p.abe_tipodeitura.tip_descricao,
+                    abe_unidademedida = new abe_unidademedida
+                    {
+                        uni_descricao = p.abe_tipodeitura.abe_unidademedida.uni_descricao,
+                        uni_representante = p.abe_tipodeitura.abe_unidademedida.uni_representante
+                    }
                 },
             }).OrderByDescending(x => x.lei_data).ToList();
 
             return lista;
+        }
+
+        public List<abe_tipodeitura> ListaAbe_tipoleitura()
+        {
+            return _repositoryAbe_tipodeitura.Query(x => 1 == 1).Select(p => new abe_tipodeitura
+            {
+                tip_codigo = p.tip_codigo,
+                tip_descricao = p.tip_descricao,
+            }).ToList();
         }
     }
 }
