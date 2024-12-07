@@ -1,6 +1,6 @@
-async function Abe_leituraListaAbe_leitura(abe_leitura) {
+async function Abe_leituraListaAbe_leitura(data_inicial, data_final, col_codigo, tip_codigo) {
     return new Promise((resolve, reject) => {
-        Get('Abe_leitura/ListaAbe_leitura?abe_leitura=' + abe_leitura).then(function (response) {
+        Get('Abe_leitura/ListaAbe_leitura?data_inicial=' + data_inicial + '&data_final=' + data_final + '&col_codigo=' + col_codigo + '&tip_codigo=' + tip_codigo).then(function (response) {
             console.log(response)
             if (response.status === 'success') {
                 resolve(response.data);

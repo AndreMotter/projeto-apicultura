@@ -5,12 +5,17 @@ $(document).ready(function () {
             load();
         }
     });
+    $('#data_inicial, #data_final, #col_codigo, #tip_codigo').change(function (e) {
+        load();
+    });
+
     load();
     loadColmeia();
     loadTipoLeitura();
 });
 function loadColmeia() {
     Abe_colmeiaListaAbe_colmeia('', 0).then(function (data) {
+        $('#col_codigo').append('<option value="">Todos</option>');
         data.forEach(obj => {
             $('#col_codigo').append('<option value="' + obj.col_codigo + '">' + obj.col_descricao + '</option>');
         });
@@ -19,6 +24,7 @@ function loadColmeia() {
 }
 function loadTipoLeitura() {
     Abe_leituraListaAbe_tipoleitura().then(function (data) {
+        $('#tip_codigo').append('<option value="">Todos</option>');
         data.forEach(obj => {
             $('#tip_codigo').append('<option value="' + obj.tip_codigo + '">' + obj.tip_descricao + '</option>');
         });
@@ -27,11 +33,14 @@ function loadTipoLeitura() {
 }
 
 function load() {
-    let abe_leitura = $('#descricao').val() || '';
-    let rac_ativo = parseInt($('#rac_ativo').val()) || 0;
+    debugger
+    let data_inicial = $('#data_inicial').val() || '';
+    let data_final = $('#data_final').val() || '';
+    let col_codigo = $('#col_codigo').val() || '';
+    let tip_codigo = $('#tip_codigo').val() || '';
     $('#table').hide();
     $('#table-loading').show();
-    Abe_leituraListaAbe_leitura(abe_leitura).then(function (data) {
+    Abe_leituraListaAbe_leitura(data_inicial, data_final, col_codigo, tip_codigo).then(function (data) {
         $('#table tbody').html('');
         data.forEach(obj => {
             let data = moment(obj.lei_data || '');
