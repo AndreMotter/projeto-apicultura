@@ -27,7 +27,8 @@ namespace App.Application.Services
         public List<abe_colmeia> ListaAbe_colmeia(string col_descricao, int col_status)
         {
             col_descricao = col_descricao ?? "";
-            return _repository.Query(x => x.col_descricao.ToUpper().Contains(col_descricao.ToUpper())).Select(p => new abe_colmeia
+            return _repository.Query(x => x.col_descricao.ToUpper().Contains(col_descricao.ToUpper())
+            && col_status == 0 ? (x.col_status == false || x.col_status == true) : x.col_status == (col_status == 1 ? true : false)).Select(p => new abe_colmeia
             {
                 col_codigo = p.col_codigo,
                 col_numero = p.col_numero,

@@ -30,5 +30,19 @@ namespace App.Api.Controllers
                 return Json(RetornoApi.Erro(ex.Message));
             }
         }
+
+        [HttpGet("ImprimirAbe_colmeia")]
+        public JsonResult ImprimirAbe_colmeia(string col_descricao, int col_status)
+        {
+            try
+            {
+                var obj = _service.ImprimirAbe_colmeia(col_descricao, col_status);
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
     }
 }

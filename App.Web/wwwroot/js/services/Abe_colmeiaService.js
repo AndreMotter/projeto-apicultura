@@ -73,3 +73,19 @@ async function Abe_colmeiaAtivar(id) {
         });
     });
 }
+
+async function Abe_colmeiaImprimir(col_descricao, col_status) {
+    return new Promise((resolve, reject) => {
+        Get('Report/ImprimirAbe_colmeia?col_descricao=' + col_descricao + '&col_status' + col_status).then(function (response) {
+            console.log(response)
+            if (response.status === 'success') {
+                resolve(response.data);
+            } else {
+                reject(response.message);
+            }
+        }, function (err) {
+            console.error(err);
+            reject('Erro desconhecido');
+        });
+    });
+}

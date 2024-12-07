@@ -62,3 +62,20 @@ function ativar(id) {
         alert(err);
     });
 }
+
+
+function Imprimir() {
+    $('#loadingModal').modal();
+    let col_descricao = $('#col_descricao').val() || '';
+    let col_status = parseInt($('#col_status').val()) || 0;
+    Abe_colmeiaImprimir(col_descricao, col_status).then(function (data) {
+        let arrrayBuffer = base64ToArrayBuffer(data);
+        let blob = new Blob([arrrayBuffer], { type: "application/pdf" });
+        let link = window.URL.createObjectURL(blob);
+        window.open(link, '_blank');
+        $('#loadingModal').modal('hide');
+    }, function (err) {
+        $('#loadingModal').modal('hide');
+        alert(err);
+    });
+}
