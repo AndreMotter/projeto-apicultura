@@ -10,5 +10,6 @@ namespace App.Domain.Interfaces.Application
         List<abe_colmeia> ListaAbe_colmeia(string col_descricao, int col_status);
         void Salvar(abe_colmeia obj);
         void Remover(Guid id);
+        void Ativar(Guid id);
     }
 }

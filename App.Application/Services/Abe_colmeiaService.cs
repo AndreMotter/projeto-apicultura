@@ -64,5 +64,20 @@ namespace App.Application.Services
 
             _repository.SaveChanges();
         }
+
+        public void Ativar(Guid id)
+        {
+            var obj = BuscaPorId(id);
+            if (obj.col_status)
+            {
+                obj.col_status = false;
+            }
+            else
+            {
+                obj.col_status = true;
+            }
+            _repository.Update(obj);
+            _repository.SaveChanges();
+        }
     }
 }
