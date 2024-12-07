@@ -105,3 +105,20 @@ async function Abe_leituraAtivar(id) {
         });
     });
 }
+
+
+async function Abe_leituraImprimir(data_inicial, data_final, col_codigo, tip_codigo) {
+    return new Promise((resolve, reject) => {
+        Get('Report/ImprimirAbe_leitura?data_inicial=' + data_inicial + '&data_final=' + data_final + '&col_codigo=' + col_codigo + '&tip_codigo=' + tip_codigo).then(function (response) {
+            console.log(response)
+            if (response.status === 'success') {
+                resolve(response.data);
+            } else {
+                reject(response.message);
+            }
+        }, function (err) {
+            console.error(err);
+            reject('Erro desconhecido');
+        });
+    });
+}

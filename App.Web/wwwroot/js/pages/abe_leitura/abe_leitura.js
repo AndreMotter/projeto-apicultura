@@ -33,7 +33,6 @@ function loadTipoLeitura() {
 }
 
 function load() {
-    debugger
     let data_inicial = $('#data_inicial').val() || '';
     let data_final = $('#data_final').val() || '';
     let col_codigo = $('#col_codigo').val() || '';
@@ -66,6 +65,25 @@ function load() {
     }, function (err) {
         $('#table').show();
         $('#table-loading').hide();
+        alert(err);
+    });
+}
+
+
+function Imprimir() {
+    $('#loadingModal').modal();
+    let data_inicial = $('#data_inicial').val() || '';
+    let data_final = $('#data_final').val() || '';
+    let col_codigo = $('#col_codigo').val() || '';
+    let tip_codigo = $('#tip_codigo').val() || '';
+    Abe_leituraImprimir(data_inicial, data_final, col_codigo, tip_codigo).then(function (data) {
+        let arrrayBuffer = base64ToArrayBuffer(data);
+        let blob = new Blob([arrrayBuffer], { type: "application/pdf" });
+        let link = window.URL.createObjectURL(blob);
+        window.open(link, '_blank');
+        $('#loadingModal').modal('hide');
+    }, function (err) {
+        $('#loadingModal').modal('hide');
         alert(err);
     });
 }

@@ -44,5 +44,21 @@ namespace App.Api.Controllers
                 return Json(RetornoApi.Erro(ex.Message));
             }
         }
+
+
+        [HttpGet("ImprimirAbe_leitura")]
+        public JsonResult ImprimirAbe_leitura(Guid? col_codigo, Guid? tip_codigo, DateTime? data_inicial, DateTime? data_final)
+        {
+            try
+            {
+                var obj = _service.ImprimirAbe_leitura(col_codigo, tip_codigo, data_inicial, data_final);
+                return Json(RetornoApi.Sucesso(obj));
+            }
+            catch (Exception ex)
+            {
+                return Json(RetornoApi.Erro(ex.Message));
+            }
+        }
+       
     }
 }

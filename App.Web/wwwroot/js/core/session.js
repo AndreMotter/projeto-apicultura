@@ -41,7 +41,6 @@ function VerificaToken() {
 
 function loadGraficos() {
     Abe_leituraBuscarInformacoesGrafico().then(function (obj) {
-        debugger 
         var labels1 = obj.lista_grafico_01.map(function (item) {
             return item.tip_descricao; // Extrai a descrição do tipo
         });
