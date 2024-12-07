@@ -30,7 +30,11 @@ namespace App.Application.Services
             return _repository.Query(x => x.col_descricao.ToUpper().Contains(abe_colmeia.ToUpper())).Select(p => new abe_colmeia
             {
                 col_codigo = p.col_codigo,
-                col_descricao = p.col_descricao
+                col_descricao = p.col_descricao,
+                abe_raca = new abe_raca
+                {
+                    rac_descricao = p.abe_raca.rac_descricao,
+                },
             }).OrderByDescending(x => x.col_descricao).ToList();
         }
         public void Remover(Guid id)

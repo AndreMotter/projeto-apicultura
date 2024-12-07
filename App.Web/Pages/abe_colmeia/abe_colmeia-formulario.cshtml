@@ -1,0 +1,30 @@
+﻿@page "/abe_colmeia/formulario/{id?}"
+
+<h4>Formulário de Raças</h4>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Descrição</label>
+                    <input type="text" name="rac_descricao" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group mb-12">
+                    <label>Origem</label>
+                    <input type="text" name="rac_origem" class="form-control">
+                </div>
+            </div>
+           
+            <div class="col-md-12 text-right">
+                <button class="btn btn-danger" onclick="window.location.href='/abe_raca'">Cancelar</button>
+                <button class="btn btn-success" onclick="salvar();">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/abe_colmeia/abe_colmeia-formulario.js"></script>
+}

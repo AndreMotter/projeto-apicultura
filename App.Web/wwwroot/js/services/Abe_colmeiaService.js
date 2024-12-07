@@ -1,7 +1,6 @@
-﻿
-async function NfcListar(usuario, status) {
+async function Abe_colmeiaListaAbe_colmeia(abe_colmeia) {
     return new Promise((resolve, reject) => {
-        Get('Nfc/Listar?usuario=' + usuario + '&status=' + status).then(function (response) {
+        Get('Abe_colmeia/ListaAbe_colmeia?abe_colmeia=' + abe_colmeia).then(function (response) {
             console.log(response)
             if (response.status === 'success') {
                 resolve(response.data);
@@ -15,9 +14,9 @@ async function NfcListar(usuario, status) {
     });
 }
 
-async function NfcRemover(id) {
+async function Abe_colmeiaBuscaPorId(id) {
     return new Promise((resolve, reject) => {
-        Delete('Nfc/Remover?id=' + id).then(function (response) {
+        Get('Abe_colmeia/BuscaPorId?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -30,9 +29,9 @@ async function NfcRemover(id) {
     });
 }
 
-async function NfcAtivar(id) {
+async function Abe_colmeiaSalvar(obj) {
     return new Promise((resolve, reject) => {
-        Get('Nfc/Ativar?id=' + id).then(function (response) {
+        Post('Abe_colmeia/Salvar', obj).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -45,9 +44,9 @@ async function NfcAtivar(id) {
     });
 }
 
-async function NfcBuscaPorId(id) {
+async function Abe_colmeiaRemover(id) {
     return new Promise((resolve, reject) => {
-        Get('Nfc/BuscaPorId?id=' + id).then(function (response) {
+        Delete('Abe_colmeia/Remover?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -60,10 +59,9 @@ async function NfcBuscaPorId(id) {
     });
 }
 
-
-async function NfcSalvar(obj) {
+async function Abe_colmeiaAtivar(id) {
     return new Promise((resolve, reject) => {
-        Post('Nfc/Salvar', obj).then(function (response) {
+        Get('Abe_colmeia/Ativar?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
